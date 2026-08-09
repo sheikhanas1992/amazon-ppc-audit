@@ -73,7 +73,7 @@ export default function Contact() {
         </motion.div>
       </motion.div>
 
-      <footer className="mt-28 flex flex-col items-center gap-4 border-t border-white/[0.08] pt-8 text-[0.72rem] text-[#6e6e73] md:flex-row md:justify-between">
+      <footer className="mt-28 flex flex-col items-center gap-4 border-t border-white/[0.08] pt-8 text-[0.72rem] text-[#7d7d82] md:flex-row md:justify-between">
         <span className="font-mono uppercase tracking-[0.12em]">© {new Date().getFullYear()} Muhammad Anas</span>
         <div className="flex gap-6 font-mono uppercase tracking-[0.12em]">
           <a href={LINKEDIN} target="_blank" rel="noreferrer" className="transition-colors hover:text-[#EDE8E0]">

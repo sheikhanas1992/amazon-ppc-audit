@@ -102,7 +102,7 @@ function Role({ r, i }) {
         <div className="font-mono text-[0.62rem] uppercase tracking-[0.15em] text-[#F5C542]">
           {r.period}
         </div>
-        <div className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.13em] text-[#6e6e73]">
+        <div className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.13em] text-[#7d7d82]">
           {r.place}
         </div>
       </div>
@@ -114,7 +114,7 @@ function Role({ r, i }) {
         <p className="mt-1 text-[0.95rem] text-[#9a9a9e]">{r.role}</p>
 
         {r.note && (
-          <p className="mt-3 font-mono text-[0.6rem] uppercase leading-relaxed tracking-[0.1em] text-[#6e6e73]">
+          <p className="mt-3 font-mono text-[0.6rem] uppercase leading-relaxed tracking-[0.1em] text-[#7d7d82]">
             {r.note}
           </p>
         )}

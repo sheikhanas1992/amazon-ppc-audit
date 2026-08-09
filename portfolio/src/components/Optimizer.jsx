@@ -23,7 +23,7 @@ export default function Optimizer() {
       >
         <motion.span
           variants={fadeUp({ distance: 12 })}
-          className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[#6e6e73]"
+          className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[#7d7d82]"
         >
           Not a screenshot
         </motion.span>

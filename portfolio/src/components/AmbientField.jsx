@@ -40,7 +40,7 @@ export default function AmbientField({
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let W = 0, H = 0, dpr = 1, LINES = 0;
-    let t = 0, raf = 0, running = true;
+    let t = 0, raf = 0, running = false;
     // Pointer is held as a normalised offset and eased, so the field tilts
     // rather than snapping to the cursor.
     let px = 0, py = 0, tx = 0, ty = 0;

@@ -238,7 +238,7 @@ export default function CampaignOptimizer() {
         <div className="overflow-x-auto">
         <table className="w-full min-w-[580px] border-collapse">
           <thead>
-            <tr className="text-[0.58rem] uppercase tracking-[0.14em] text-[#6e6e73]">
+            <tr className="text-[0.58rem] uppercase tracking-[0.14em] text-[#7d7d82]">
               <th className="py-2.5 pl-4 pr-3 text-left font-normal">Customer search term</th>
               <th className="hidden px-3 text-right font-normal sm:table-cell">Clicks</th>
               <th className="px-3 text-right font-normal">Bid</th>
@@ -256,7 +256,7 @@ export default function CampaignOptimizer() {
         </div>
       </div>
 
-      <p className="border-t border-white/[0.06] px-4 py-3 text-[0.66rem] leading-relaxed text-[#6e6e73]">
+      <p className="border-t border-white/[0.06] px-4 py-3 text-[0.66rem] leading-relaxed text-[#7d7d82]">
         A worked demonstration of method, not a client account. Two terms drew clicks and no
         orders, so they go to negative exact. Budget moves to the three that convert.
       </p>

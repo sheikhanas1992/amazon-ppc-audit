@@ -68,7 +68,7 @@ export default function About() {
             <div key={block.label}>
               <motion.h3
                 variants={fadeUp({ distance: 12, duration: 0.7 })}
-                className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[#6e6e73]"
+                className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[#7d7d82]"
               >
                 {block.label}
               </motion.h3>

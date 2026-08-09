@@ -109,7 +109,7 @@ function Metric({ m, run, big }) {
       >
         {m.prefix || ""}{val}{m.suffix || ""}
       </div>
-      <div className="mt-2 text-[0.6rem] uppercase tracking-[0.15em] text-[#6e6e73]">
+      <div className="mt-2 text-[0.6rem] uppercase tracking-[0.15em] text-[#7d7d82]">
         {m.label}
       </div>
     </div>
@@ -132,7 +132,7 @@ function Case({ c, i }) {
       <div className="p-6 md:p-8">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <h3 className="text-[1.05rem] font-semibold text-[#EDE8E0]">{c.sector}</h3>
-          <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#6e6e73]">
+          <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#7d7d82]">
             {c.context}
           </span>
         </div>
