@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import portraitWebp from "../assets/portrait.webp";
+import portraitJpg from "../assets/portrait.jpg";
 
 /**
  * Hero
@@ -71,6 +73,10 @@ export default function Hero() {
       onPointerMove={handleMove}
       className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 pb-16 pt-28 md:px-10"
     >
+      {/* Hints the browser to fetch the portrait (the LCP element) before it
+          would otherwise discover it via the CSS/JS-driven <picture> below. */}
+      <link rel="preload" as="image" href={portraitWebp} fetchPriority="high" />
+
       {/* Cursor-tracked spotlight */}
       <motion.div
         aria-hidden
@@ -106,15 +112,22 @@ export default function Hero() {
 
       {/* Portrait, overlapping the wordmark */}
       <motion.div
-        initial={reduce ? false : { opacity: 0, y: 28, scale: 0.94 }}
+        initial={reduce ? false : { opacity: 0, y: 16, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 1, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         className="relative mx-auto -mt-[6%] h-[clamp(7rem,14vw,11rem)] w-[clamp(7rem,14vw,11rem)] overflow-hidden rounded-[22px] border border-white/10 bg-[#1a1a1d]"
       >
-        {/* REPLACE: real portrait — square, ~1000×1000, desaturated */}
-        <div className="flex h-full w-full items-center justify-center font-mono text-sm tracking-[0.2em] text-[#9a9a9e]">
-          MA
-        </div>
+        <picture>
+          <source srcSet={portraitWebp} type="image/webp" />
+          <img
+            src={portraitJpg}
+            alt="Portrait of Muhammad Anas"
+            fetchPriority="high"
+            className="h-full w-full object-cover"
+            width={800}
+            height={800}
+          />
+        </picture>
       </motion.div>
 
       {/* Footer copy */}

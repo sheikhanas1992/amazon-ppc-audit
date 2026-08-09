@@ -31,11 +31,6 @@ already included in `public/` and copied into every build.
 
 ## Outstanding before this ships
 
-- `src/components/Experience.jsx` — fill in the real AMZ One Step dates
-  (currently a `TODO` placeholder), and add a `note` if that role overlapped
-  with Sohomax.
-- `src/components/Hero.jsx` — swap the placeholder "MA" portrait block for a
-  real square (~1000×1000, desaturated) photo.
 - `public/og-image.png` — currently a generated placeholder in the site's
   palette; swap for a designed version if you want a portrait or different
   layout in link previews.

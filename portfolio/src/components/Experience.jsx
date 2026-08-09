@@ -6,15 +6,9 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
  * ---------------------------------------------------------------------------
  * SOURCED STRICTLY FROM THE LINKEDIN PROFILE EXPORT, plus AMZ One Step.
  *
- * ⚠️ TWO THINGS TO SETTLE BEFORE THIS SHIPS
- *
- * 1. AMZ_ONE_STEP dates are placeholders. Fill them in. If the role ran
- *    alongside Sohomax rather than after it, say so in the `note` field —
- *    an unexplained overlap looks worse than a stated one.
- *
- * 2. Forsit is deliberately NOT here. It does not appear anywhere on the
- *    LinkedIn export. If the role is real, add it to LinkedIn first, then
- *    add it here. If it is not, leave it out permanently.
+ * Forsit is deliberately NOT here. It does not appear anywhere on the
+ * LinkedIn export. If the role is real, add it to LinkedIn first, then
+ * add it here. If it is not, leave it out permanently.
  *
  * DELIBERATELY OMITTED CLAIMS, and why:
  *   · "300% market penetration"  — penetration is a share; it cannot exceed 100%
@@ -32,9 +26,9 @@ const ROLES = [
   {
     company: "AMZ One Step",
     role: "Senior PPC Manager",
-    period: "TODO — start – end", // ⚠️ FILL THIS IN
+    period: "Aug 2025 – Aug 2026",
     place: "United States · Remote",
-    note: null, // e.g. "Ran alongside the Sohomax engagement"
+    note: "Ran alongside the Sohomax engagement.",
     points: [
       "Campaign strategy, bid governance and account audits for FBA brands across fashion, fitness, supplements and home categories.",
       "Weekly written performance reporting and quarterly growth roadmaps, delivered direct to brand owners.",
