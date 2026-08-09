@@ -115,7 +115,7 @@ export default function Hero() {
         initial={reduce ? false : { opacity: 0, y: 16, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative mx-auto -mt-[6%] h-[clamp(7rem,14vw,11rem)] w-[clamp(7rem,14vw,11rem)] overflow-hidden rounded-[22px] border border-white/10 bg-[#1a1a1d]"
+        className="relative mx-auto -mt-[1.5%] h-[clamp(5.5rem,14vw,11rem)] w-[clamp(5.5rem,14vw,11rem)] overflow-hidden rounded-[22px] border border-white/10 bg-[#1a1a1d] sm:-mt-[3%] md:-mt-[6%]"
       >
         <picture>
           <source srcSet={portraitWebp} type="image/webp" />
