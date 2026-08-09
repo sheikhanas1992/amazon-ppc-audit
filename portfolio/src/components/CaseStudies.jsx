@@ -1,5 +1,13 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useInView,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 
 /**
  * CaseStudies
@@ -120,13 +128,37 @@ function Case({ c, i }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-15% 0px" });
+  const reduce = useReducedMotion();
+
+  /* A little depth on hover -- transform only, so it stays cheap and honours
+     the site's "opacity/transform only" motion rule. */
+  const px = useMotionValue(0.5);
+  const py = useMotionValue(0.5);
+  const spx = useSpring(px, { stiffness: 220, damping: 22, mass: 0.6 });
+  const spy = useSpring(py, { stiffness: 220, damping: 22, mass: 0.6 });
+  const rotateX = useTransform(spy, [0, 1], [4, -4]);
+  const rotateY = useTransform(spx, [0, 1], [-4, 4]);
+
+  const handleMove = (e) => {
+    if (reduce) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    px.set((e.clientX - r.left) / r.width);
+    py.set((e.clientY - r.top) / r.height);
+  };
+  const handleLeave = () => {
+    px.set(0.5);
+    py.set(0.5);
+  };
 
   return (
     <motion.article
       ref={ref}
+      onPointerMove={handleMove}
+      onPointerLeave={handleLeave}
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      style={reduce ? undefined : { rotateX, rotateY, transformPerspective: 1000 }}
       className="overflow-hidden rounded-[20px] border border-white/[0.08] bg-[#151517]"
     >
       <div className="p-6 md:p-8">
@@ -188,7 +220,7 @@ function Case({ c, i }) {
           {c.tags.map((t) => (
             <span
               key={t}
-              className="rounded-full border border-white/[0.09] px-3 py-1 font-mono text-[0.58rem] uppercase tracking-[0.11em] text-[#9a9a9e]"
+              className="rounded-full border border-white/[0.09] px-3 py-1 font-mono text-[0.58rem] uppercase tracking-[0.11em] text-[#9a9a9e] transition-colors duration-150 hover:border-[#F5C542]/40 hover:text-[#EDE8E0]"
             >
               {t}
             </span>

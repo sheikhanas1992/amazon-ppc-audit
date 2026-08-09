@@ -129,7 +129,7 @@ function Role({ r, i }) {
           {r.tags.map((t) => (
             <span
               key={t}
-              className="rounded-full border border-white/[0.09] px-3 py-1 font-mono text-[0.57rem] uppercase tracking-[0.11em] text-[#9a9a9e]"
+              className="rounded-full border border-white/[0.09] px-3 py-1 font-mono text-[0.57rem] uppercase tracking-[0.11em] text-[#9a9a9e] transition-colors duration-150 hover:border-[#F5C542]/40 hover:text-[#EDE8E0]"
             >
               {t}
             </span>

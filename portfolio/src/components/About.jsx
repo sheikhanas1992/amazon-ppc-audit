@@ -36,7 +36,7 @@ export default function About() {
         >
           <motion.h2
             variants={fadeUp({ distance: 20 })}
-            className="max-w-[14ch] text-[clamp(1.9rem,4vw,3.1rem)] font-black leading-[0.95] tracking-[-0.02em] text-[#EDE8E0]"
+            className="max-w-[16ch] text-[clamp(1.7rem,3.4vw,2.6rem)] font-black normal-case leading-[1.15] tracking-[-0.01em] text-[#EDE8E0]"
           >
             Ads are the easy part.
             <br />
@@ -80,7 +80,7 @@ export default function About() {
                   <motion.span
                     key={tag}
                     variants={staggerItem}
-                    className="rounded-full border border-white/[0.09] bg-[#151517] px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-[#9a9a9e]"
+                    className="rounded-full border border-white/[0.09] bg-[#151517] px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-[#9a9a9e] transition-colors duration-150 hover:border-[#F5C542]/40 hover:text-[#EDE8E0]"
                   >
                     {tag}
                   </motion.span>
