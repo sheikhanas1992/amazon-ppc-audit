@@ -93,15 +93,6 @@ export default function Hero() {
         }}
       />
 
-      {/* Recurring dot motif */}
-      <motion.span
-        aria-hidden
-        className="absolute left-1/2 top-[18%] hidden h-3 w-3 -translate-x-1/2 rounded-full bg-[#EDE8E0] sm:block"
-        initial={reduce ? false : { opacity: 0, scale: 0.4 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-      />
-
       <motion.h1
         style={{ y: reduce ? undefined : nameY, opacity: reduce ? undefined : nameOpacity }}
         className="relative mx-auto w-full max-w-[1400px] text-center font-[Archivo,sans-serif] text-[clamp(2.6rem,13.2vw,13rem)] font-black uppercase leading-[0.82] tracking-[-0.035em] text-[#EDE8E0]"
