@@ -49,7 +49,7 @@ export default function Nav() {
 
         <a
           href="#contact"
-          className="rounded-full border border-white/[0.14] px-4 py-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[#EDE8E0] transition-colors hover:border-[#F5C542]/50 hover:text-[#F5C542]"
+          className="rounded-full bg-[#F5C542] px-5 py-2.5 font-mono text-[0.64rem] font-semibold uppercase tracking-[0.14em] text-[#0d0d0f] shadow-[0_4px_14px_-4px_rgba(245,197,66,0.5)] transition-transform duration-200 hover:scale-[1.05] active:scale-[0.97]"
         >
           Contact
         </a>

@@ -64,9 +64,10 @@ function MagneticCTA() {
       onPointerMove={handleMove}
       onPointerLeave={reset}
       style={{ x: reduce ? 0 : sx, y: reduce ? 0 : sy }}
-      className="inline-flex items-center gap-3 rounded-full border border-white/[0.14] bg-[#151517] px-8 py-4 font-mono text-[0.78rem] uppercase tracking-[0.14em] text-[#EDE8E0] transition-colors hover:border-[#F5C542]/60 hover:text-[#F5C542]"
+      className="inline-flex items-center gap-3 rounded-full bg-[#F5C542] px-9 py-[1.15rem] font-mono text-[0.82rem] font-bold uppercase tracking-[0.14em] text-[#0d0d0f] shadow-[0_10px_28px_-8px_rgba(245,197,66,0.55)] transition-shadow duration-200 hover:shadow-[0_14px_32px_-6px_rgba(245,197,66,0.65)]"
     >
       Get in touch
+      <span aria-hidden>→</span>
     </motion.a>
   );
 }
@@ -106,7 +107,7 @@ export default function Contact() {
           <MagneticCTA />
           <a
             href="/audit"
-            className="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-[#F5C542] transition-opacity hover:opacity-70"
+            className="rounded-full border border-[#F5C542]/40 bg-[#F5C542]/[0.06] px-5 py-2.5 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#F5C542] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#F5C542]/[0.14]"
           >
             Or request a free account audit
           </a>
@@ -118,14 +119,14 @@ export default function Contact() {
             target="_blank"
             rel="noreferrer"
             aria-label="Sheikh Anas on LinkedIn"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.14] text-[#b4b4b8] transition-colors hover:border-[#F5C542]/50 hover:text-[#F5C542]"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.16] text-[#b4b4b8] transition-all duration-200 hover:-translate-y-1 hover:border-[#F5C542]/60 hover:text-[#F5C542]"
           >
             <LinkedInIcon className="h-[18px] w-[18px]" />
           </a>
           <a
             href={`mailto:${EMAIL}`}
             aria-label="Email Sheikh Anas"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.14] text-[#b4b4b8] transition-colors hover:border-[#F5C542]/50 hover:text-[#F5C542]"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.16] text-[#b4b4b8] transition-all duration-200 hover:-translate-y-1 hover:border-[#F5C542]/60 hover:text-[#F5C542]"
           >
             <GmailIcon className="h-[19px] w-[19px]" />
           </a>
@@ -134,7 +135,7 @@ export default function Contact() {
             target="_blank"
             rel="noreferrer"
             aria-label="Message Sheikh Anas on WhatsApp"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.14] text-[#b4b4b8] transition-colors hover:border-[#F5C542]/50 hover:text-[#F5C542]"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.16] text-[#b4b4b8] transition-all duration-200 hover:-translate-y-1 hover:border-[#F5C542]/60 hover:text-[#F5C542]"
           >
             <WhatsAppIcon className="h-[19px] w-[19px]" />
           </a>

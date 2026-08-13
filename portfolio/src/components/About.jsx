@@ -71,9 +71,10 @@ export default function About() {
           <motion.div variants={fadeUp({ distance: 14 })} className="mt-8">
             <a
               href="/audit"
-              className="inline-flex items-center gap-2 rounded-full border border-[#F5C542]/40 bg-[#F5C542]/[0.06] px-5 py-2.5 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-[#F5C542] transition-colors hover:bg-[#F5C542]/[0.12]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#F5C542] px-6 py-3 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#0d0d0f] shadow-[0_6px_18px_-6px_rgba(245,197,66,0.5)] transition-transform duration-200 hover:scale-[1.04] active:scale-[0.97]"
             >
               Request a free account audit
+              <span aria-hidden>→</span>
             </a>
           </motion.div>
         </motion.div>
