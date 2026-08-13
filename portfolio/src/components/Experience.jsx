@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion, useScroll } from "framer-motion";
 
 /**
  * Experience
@@ -86,7 +86,7 @@ function initials(name) {
     .toUpperCase();
 }
 
-function Role({ r, i }) {
+function Role({ r, i, isFirst }) {
   const ref = useRef(null);
   const reduce = useReducedMotion();
   const inView = useInView(ref, { once: true, margin: "-12% 0px" });
@@ -94,52 +94,93 @@ function Role({ r, i }) {
   return (
     <motion.li
       ref={ref}
-      initial={reduce ? false : { opacity: 0, y: 28 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.85, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative list-none rounded-[24px] border border-white/[0.1] bg-[#151517] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#F5C542]/30 hover:shadow-[0_20px_44px_-20px_rgba(0,0,0,0.7)] md:p-9"
+      initial={reduce ? false : { opacity: 0, x: -20 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+      className="relative list-none pl-[4.75rem] md:pl-[6rem]"
     >
-      <div className="grid gap-6 md:grid-cols-[auto_minmax(0,14rem)_minmax(0,1fr)] md:gap-10">
+      {/* Timeline node: sits on the connecting line, glow ring pulses in. */}
+      <motion.div
+        aria-hidden
+        initial={reduce ? false : { scale: 0 }}
+        animate={inView ? { scale: 1 } : {}}
+        transition={{ duration: 0.55, delay: i * 0.12 + 0.1, ease: [0.34, 1.56, 0.64, 1] }}
+        className="absolute left-0 top-0 z-10 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#F5C542]/50 bg-[#151517] font-mono text-[1.1rem] font-bold text-[#F5C542] shadow-[0_0_0_5px_#0d0d0f,0_0_24px_-6px_rgba(245,197,66,0.5)] md:h-16 md:w-16"
+      >
+        {isFirst && (
+          <motion.span
+            aria-hidden
+            className="absolute inset-0 rounded-2xl border border-[#F5C542]/60"
+            animate={reduce ? {} : { scale: [1, 1.35, 1], opacity: [0.6, 0, 0.6] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+          />
+        )}
+        {initials(r.company)}
+      </motion.div>
+
+      <div className="group relative overflow-hidden rounded-[24px] border border-white/[0.1] bg-gradient-to-b from-[#17171a] to-[#141416] p-7 shadow-[0_1px_0_rgba(255,255,255,0.04)_inset] transition-all duration-300 hover:-translate-y-1 hover:border-[#F5C542]/35 hover:shadow-[0_24px_48px_-20px_rgba(0,0,0,0.75)] md:p-9">
         <div
           aria-hidden
-          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#F5C542]/[0.1] font-mono text-[1.1rem] font-bold text-[#F5C542] transition-colors duration-300 group-hover:bg-[#F5C542]/[0.18]"
-        >
-          {initials(r.company)}
-        </div>
+          className="pointer-events-none absolute inset-x-0 top-0 h-[2px] origin-left scale-x-0 bg-gradient-to-r from-[#F5C542] to-transparent transition-transform duration-500 group-hover:scale-x-100"
+        />
 
-        <div>
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <h3 className="text-[1.3rem] font-bold leading-snug text-[#EDE8E0]">{r.company}</h3>
           <div className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-[#F5C542]">
             {r.period}
           </div>
-          <div className="mt-2 font-mono text-[0.64rem] font-medium uppercase tracking-[0.13em] text-[#9a9a9e]">
+        </div>
+        <div className="mt-1 flex flex-wrap items-baseline justify-between gap-3">
+          <p className="text-[1.02rem] font-semibold text-[#d8d8dc]">{r.role}</p>
+          <div className="font-mono text-[0.62rem] font-medium uppercase tracking-[0.13em] text-[#9a9a9e]">
             {r.place}
           </div>
         </div>
 
-        <div>
-          <h3 className="text-[1.25rem] font-bold leading-snug text-[#EDE8E0]">{r.company}</h3>
-          <p className="mt-1 text-[1rem] font-semibold text-[#d8d8dc]">{r.role}</p>
+        {r.note && (
+          <p className="mt-3 font-mono text-[0.64rem] font-medium uppercase leading-relaxed tracking-[0.1em] text-[#9a9a9e]">
+            {r.note}
+          </p>
+        )}
 
-          {r.note && (
-            <p className="mt-3 font-mono text-[0.64rem] font-medium uppercase leading-relaxed tracking-[0.1em] text-[#9a9a9e]">
-              {r.note}
-            </p>
-          )}
-
-          <ul className="mt-5 space-y-3">
-            {r.points.map((p, k) => (
-              <li
-                key={k}
-                className="grid grid-cols-[auto_1fr] gap-3 text-[0.96rem] font-medium leading-relaxed text-[#c7c7cc]"
-              >
-                <span aria-hidden className="mt-[0.6em] h-[3px] w-3 rounded-full bg-[#F5C542]" />
-                <span>{p}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className="mt-5 space-y-3">
+          {r.points.map((p, k) => (
+            <li
+              key={k}
+              className="grid grid-cols-[auto_1fr] gap-3 text-[0.96rem] font-medium leading-relaxed text-[#c7c7cc]"
+            >
+              <span aria-hidden className="mt-[0.6em] h-[3px] w-3 rounded-full bg-[#F5C542]" />
+              <span>{p}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </motion.li>
+  );
+}
+
+/** Vertical spine connecting every role node, filling in as you scroll. */
+function Timeline({ children }) {
+  const ref = useRef(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 78%", "end 55%"],
+  });
+
+  return (
+    <div ref={ref} className="relative">
+      <div
+        aria-hidden
+        className="absolute left-7 top-7 bottom-7 w-[2px] bg-white/[0.09] md:left-8"
+      />
+      <motion.div
+        aria-hidden
+        style={{ scaleY: reduce ? 1 : scrollYProgress }}
+        className="absolute left-7 top-7 bottom-7 w-[2px] origin-top bg-gradient-to-b from-[#F5C542] via-[#F5C542]/70 to-[#F5C542]/10 md:left-8"
+      />
+      <ul className="flex flex-col gap-8 p-0">{children}</ul>
+    </div>
   );
 }
 
@@ -156,11 +197,13 @@ export default function Experience() {
           LinkedIn.
         </p>
 
-        <ul className="mt-14 flex list-none flex-col gap-5 p-0">
-          {ROLES.map((r, i) => (
-            <Role key={r.company} r={r} i={i} />
-          ))}
-        </ul>
+        <div className="mt-14">
+          <Timeline>
+            {ROLES.map((r, i) => (
+              <Role key={r.company} r={r} i={i} isFirst={i === 0} />
+            ))}
+          </Timeline>
+        </div>
       </div>
     </section>
   );
