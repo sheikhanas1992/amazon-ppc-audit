@@ -96,7 +96,7 @@ export default function Hero() {
       {/* Recurring dot motif */}
       <motion.span
         aria-hidden
-        className="absolute left-1/2 top-[18%] h-3 w-3 -translate-x-1/2 rounded-full bg-[#EDE8E0]"
+        className="absolute left-1/2 top-[18%] hidden h-3 w-3 -translate-x-1/2 rounded-full bg-[#EDE8E0] sm:block"
         initial={reduce ? false : { opacity: 0, scale: 0.4 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
