@@ -5,7 +5,7 @@ const LINKS = [
   { href: "#work", label: "Work" },
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
-  { href: "#results", label: "Results" },
+  { href: "/audit", label: "Get an audit" },
 ];
 
 export default function Nav() {
@@ -32,7 +32,7 @@ export default function Nav() {
           href="#top"
           className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-[#EDE8E0]"
         >
-          M. Anas
+          S. Anas
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -40,7 +40,7 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="font-mono text-[0.66rem] uppercase tracking-[0.14em] text-[#9a9a9e] transition-colors hover:text-[#EDE8E0]"
+              className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.14em] text-[#b4b4b8] transition-colors hover:text-[#EDE8E0]"
             >
               {l.label}
             </a>

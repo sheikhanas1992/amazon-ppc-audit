@@ -10,7 +10,7 @@ import { motion, useReducedMotion } from "framer-motion";
  *
  * Shown only from xl (1280px) up. Content runs edge to edge (max-w-1100 plus
  * padding) below that, so a fixed corner badge sits on top of whatever text
- * happens to be there at any given scroll position — confirmed colliding
+ * happens to be there at any given scroll position: confirmed colliding
  * with body copy and even the optimiser table at 375, 768 and 1024. Only
  * past ~1180px does the content column actually clear the viewport edge.
  * ---------------------------------------------------------------------------

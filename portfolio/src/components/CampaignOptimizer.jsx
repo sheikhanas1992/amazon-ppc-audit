@@ -17,7 +17,7 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
  */
 
 /* Realistic mixed-intent search terms: two clear wasters, two to scale,
-   the rest holding. This spread is the story — swap the words for your own
+   the rest holding. This spread is the story: swap the words for your own
    category, but keep the shape. */
 const TERMS = [
   { term: "collagen peptides powder",       impr: 41280, clicks: 612, before: { bid: 1.42, spend: 869, sales: 2900 }, after: { bid: 1.68, spend: 1042, sales: 3980 }, action: "scale"  },
@@ -121,14 +121,14 @@ function Row({ t, optimized, i }) {
         {t.clicks}
       </td>
       <td className="px-3 text-right font-mono text-[0.75rem] tabular-nums text-[#9a9a9e]">
-        {s.bid ? "$" + s.bid.toFixed(2) : "—"}
+        {s.bid ? "$" + s.bid.toFixed(2) : "-"}
       </td>
       <td className="px-3 text-right font-mono text-[0.75rem] tabular-nums text-[#9a9a9e]">
-        {s.spend ? money(s.spend) : "—"}
+        {s.spend ? money(s.spend) : "-"}
       </td>
       <td className="px-3 text-right font-mono text-[0.75rem] tabular-nums">
         <span style={{ color: dead ? "#5c5c61" : acos > 40 ? "#E08D74" : acos > 0 ? "#9BE6B4" : "#5c5c61" }}>
-          {acos ? acos.toFixed(1) + "%" : "—"}
+          {acos ? acos.toFixed(1) + "%" : "-"}
         </span>
       </td>
       <td className="w-[6.5rem] py-2.5 pl-3 pr-4 text-right">

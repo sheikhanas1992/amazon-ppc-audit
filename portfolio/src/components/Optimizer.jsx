@@ -6,7 +6,7 @@ import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
  * Optimizer
  * ---------------------------------------------------------------------------
  * The flagship artifact gets its own section, high on the page, rather than
- * being attached to any one employer card — the report is a worked
+ * being attached to any one employer card: the report is a worked
  * demonstration of method (see its own caption), not a specific client's
  * data, so it shouldn't imply otherwise by sitting inside a company's card.
  * ---------------------------------------------------------------------------
@@ -34,9 +34,9 @@ export default function Optimizer() {
           >
             Watch the optimisation happen
           </motion.h2>
-          <motion.p variants={fadeUp({ distance: 14 })} className="mt-4 text-[0.95rem] text-[#9a9a9e]">
+          <motion.p variants={fadeUp({ distance: 14 })} className="mt-4 text-[1rem] font-medium text-[#b4b4b8]">
             A real search-term report. Toggle it and watch wasted spend get cut and budget move to
-            what converts — the same motion I run on every account I manage.
+            what converts: the same motion I run on every account I manage.
           </motion.p>
         </div>
       </motion.div>

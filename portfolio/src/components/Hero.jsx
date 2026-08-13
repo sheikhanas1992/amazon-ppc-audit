@@ -6,7 +6,7 @@ import portraitJpg from "../assets/portrait.jpg";
 /**
  * Hero
  * ---------------------------------------------------------------------------
- * Same composition as the Lovable build — the name is the page. What changes
+ * Same composition as the Lovable build: the name is the page. What changes
  * is that it now responds:
  *
  *  1. The radial spotlight follows the cursor instead of sitting still. The
@@ -20,7 +20,7 @@ import portraitJpg from "../assets/portrait.jpg";
  * ---------------------------------------------------------------------------
  */
 
-const LINE_1 = "MUHAMMAD";
+const LINE_1 = "SHEIKH";
 const LINE_2 = "ANAS";
 
 export default function Hero() {
@@ -121,7 +121,7 @@ export default function Hero() {
           <source srcSet={portraitWebp} type="image/webp" />
           <img
             src={portraitJpg}
-            alt="Portrait of Muhammad Anas"
+            alt="Portrait of Sheikh Anas"
             fetchPriority="high"
             className="h-full w-full object-cover"
             width={800}
@@ -131,15 +131,15 @@ export default function Hero() {
       </motion.div>
 
       {/* Footer copy */}
-      <div className="mx-auto mt-12 flex w-full max-w-[1400px] flex-col gap-8 text-[0.92rem] leading-relaxed text-[#9a9a9e] md:mt-20 md:flex-row md:justify-between md:gap-16">
+      <div className="mx-auto mt-12 flex w-full max-w-[1400px] flex-col gap-8 text-[0.96rem] font-medium leading-relaxed text-[#b4b4b8] md:mt-20 md:flex-row md:justify-between md:gap-16">
         {[
           {
             align: "md:text-left",
-            body: "Senior PPC & Performance Marketing Manager. Six years running Amazon advertising — from my own FBA brand to seven-figure ad budgets for 8-figure sellers. Currently open to new opportunities.",
+            body: "I help 6 to 8 figure Amazon brands scale with PPC. Hands-on experience managing $50K+ a month in ad spend, turning wasted spend into consistent, profitable growth.",
           },
           {
             align: "md:text-right",
-            body: "Focused on Amazon PPC, brand management and profitable account scaling, working remotely for global e-commerce brands.",
+            body: "Sponsored Products, Sponsored Brands and Sponsored Display, campaign structure, listing SEO and full account audits, for brands ready to scale profitably.",
           },
         ].map((c, i) => (
           <motion.p

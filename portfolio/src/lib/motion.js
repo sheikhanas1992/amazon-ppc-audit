@@ -1,5 +1,5 @@
 /**
- * Shared motion primitives. One easing curve, everywhere — mixing eases is
+ * Shared motion primitives. One easing curve, everywhere: mixing eases is
  * what makes a site feel assembled by committee.
  */
 export const EASE = [0.16, 1, 0.3, 1];

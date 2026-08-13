@@ -1,13 +1,12 @@
 import { motion } from "framer-motion";
 import About from "./About";
 import Experience from "./Experience";
-import CaseStudies from "./CaseStudies";
 import Contact from "./Contact";
 import AmbientField from "./AmbientField";
 import { fadeIn, viewportOnce } from "../lib/motion";
 
-/** Full-bleed break between About and Experience — the design brief calls
- * for alternating full-bleed and contained sections so the page doesn't
+/** Full-bleed break between About and Experience: the design calls for
+ * alternating full-bleed and contained sections so the page doesn't
  * read as one uniform stack. */
 function SectionBreak() {
   return (
@@ -35,7 +34,6 @@ export default function LowerSections() {
       <About />
       <SectionBreak />
       <Experience />
-      <CaseStudies />
       <Contact />
     </>
   );

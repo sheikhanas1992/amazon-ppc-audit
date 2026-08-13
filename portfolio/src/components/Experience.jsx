@@ -11,10 +11,10 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
  * add it here. If it is not, leave it out permanently.
  *
  * DELIBERATELY OMITTED CLAIMS, and why:
- *   · "300% market penetration"  — penetration is a share; it cannot exceed 100%
- *   · "brand awareness +250%"    — not measurable on Amazon
- *   · "300% ROI"                 — stated elsewhere as 300% ROAS; those are
- *                                  different things. Pick one and be precise.
+ *   · "300% market penetration": penetration is a share, it cannot exceed 100%
+ *   · "brand awareness +250%": not measurable on Amazon
+ *   · "300% ROI": stated elsewhere as 300% ROAS, those are
+ *                 different things. Pick one and be precise.
  *
  * The freelance platform roles (Fiverr ×4, Upwork ×2, WORCOFY, own FBA brand)
  * are consolidated into one entry. As eight separate listings they read as
@@ -38,7 +38,7 @@ const ROLES = [
   },
   {
     company: "Sohomax",
-    role: "Paid Media Manager — Amazon, TikTok, Meta",
+    role: "Paid Media Manager: Amazon, TikTok, Meta",
     period: "Jan 2023 – Present",
     place: "United States · Remote",
     note: "Joined as Performance Marketing Specialist, moved into the manager role in Aug 2023.",
@@ -64,7 +64,7 @@ const ROLES = [
     tags: ["Product launch", "$2M budget", "Listing optimisation", "Brand strategy"],
   },
   {
-    company: "Freelance — Upwork, Fiverr & direct",
+    company: "Freelance: Upwork, Fiverr & direct",
     role: "Amazon PPC, catalogue & FBA operations",
     period: "2020 – 2022",
     place: "US & UK clients",
@@ -105,7 +105,7 @@ function Role({ r, i }) {
         <h3 className="text-[1.15rem] font-semibold leading-snug text-[#EDE8E0]">
           {r.company}
         </h3>
-        <p className="mt-1 text-[0.95rem] text-[#9a9a9e]">{r.role}</p>
+        <p className="mt-1 text-[0.95rem] font-medium text-[#b4b4b8]">{r.role}</p>
 
         {r.note && (
           <p className="mt-3 font-mono text-[0.6rem] uppercase leading-relaxed tracking-[0.1em] text-[#7d7d82]">
@@ -117,7 +117,7 @@ function Role({ r, i }) {
           {r.points.map((p, k) => (
             <li
               key={k}
-              className="grid grid-cols-[auto_1fr] gap-3 text-[0.92rem] leading-relaxed text-[#9a9a9e]"
+              className="grid grid-cols-[auto_1fr] gap-3 text-[0.94rem] font-medium leading-relaxed text-[#b4b4b8]"
             >
               <span aria-hidden className="mt-[0.55em] h-px w-3 bg-[#F5C542] opacity-60" />
               <span>{p}</span>
@@ -147,7 +147,7 @@ export default function Experience() {
         <h2 className="text-[clamp(2.4rem,9vw,6rem)] font-black uppercase leading-[0.85] tracking-[-0.03em] text-[#EDE8E0]">
           Experience
         </h2>
-        <p className="mt-6 max-w-[58ch] text-[0.95rem] leading-relaxed text-[#9a9a9e]">
+        <p className="mt-6 max-w-[58ch] text-[1rem] font-medium leading-relaxed text-[#b4b4b8]">
           Six years on Amazon advertising, from running my own private-label brand
           to managing seven-figure budgets for 8-figure sellers. Full history on
           LinkedIn.
