@@ -6,6 +6,7 @@ const EMAIL = "sheikhanas1992@gmail.com";
 const LINKEDIN = "https://www.linkedin.com/in/muhammad-anas-amz-brand-manager-ppc-expert/";
 const WHATSAPP =
   "https://wa.me/923177748484?text=Hi%20Sheikh%2C%20I%20found%20your%20portfolio%20and%20wanted%20to%20get%20in%20touch.";
+const CALENDLY = "https://calendly.com/sheikhanas1992/30min";
 
 /* Monochrome logo marks. Shape carries the identity, not colour: the site's
    accent yellow is reserved for the sparkle mark, so these use currentColor
@@ -60,7 +61,9 @@ function MagneticCTA() {
   return (
     <motion.a
       ref={ref}
-      href={`mailto:${EMAIL}`}
+      href={CALENDLY}
+      target="_blank"
+      rel="noreferrer"
       onPointerMove={handleMove}
       onPointerLeave={reset}
       style={{ x: reduce ? 0 : sx, y: reduce ? 0 : sy }}
@@ -82,8 +85,16 @@ export default function Contact() {
         viewport={viewportOnce}
       >
         <motion.div variants={fadeUp({ distance: 10 })} className="mb-6 flex items-center justify-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#9BE6B4]" />
-          <span className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.16em] text-[#b4b4b8]">
+          <span className="relative flex h-2 w-2">
+            <motion.span
+              aria-hidden
+              className="absolute inset-0 rounded-full bg-[#9BE6B4]"
+              animate={{ scale: [1, 2.2, 1], opacity: [0.7, 0, 0.7] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#9BE6B4]" />
+          </span>
+          <span className="font-mono text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[#d8d8dc]">
             Open for new Amazon PPC accounts
           </span>
         </motion.div>

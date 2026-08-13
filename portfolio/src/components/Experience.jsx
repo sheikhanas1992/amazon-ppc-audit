@@ -132,13 +132,13 @@ function Role({ r, i, isFirst }) {
         </div>
         <div className="mt-1 flex flex-wrap items-baseline justify-between gap-3">
           <p className="text-[1.02rem] font-semibold text-[#d8d8dc]">{r.role}</p>
-          <div className="font-mono text-[0.62rem] font-medium uppercase tracking-[0.13em] text-[#9a9a9e]">
+          <div className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.13em] text-[#d8d8dc]">
             {r.place}
           </div>
         </div>
 
         {r.note && (
-          <p className="mt-3 font-mono text-[0.64rem] font-medium uppercase leading-relaxed tracking-[0.1em] text-[#9a9a9e]">
+          <p className="mt-3 font-mono text-[0.7rem] font-bold uppercase leading-relaxed tracking-[0.1em] text-[#c7c7cc]">
             {r.note}
           </p>
         )}
@@ -186,7 +186,14 @@ function Timeline({ children }) {
 
 export default function Experience() {
   return (
-    <section id="experience" className="px-6 py-24 md:px-10 md:py-32">
+    <section id="experience" className="relative overflow-hidden px-6 py-24 md:px-10 md:py-32">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background: "radial-gradient(40rem 28rem at 8% 20%, rgba(245,197,66,0.045), transparent 65%)",
+        }}
+      />
       <div className="mx-auto max-w-[1100px]">
         <h2 className="text-[clamp(2.4rem,9vw,6rem)] font-black uppercase leading-[0.85] tracking-[-0.03em] text-[#EDE8E0]">
           Experience

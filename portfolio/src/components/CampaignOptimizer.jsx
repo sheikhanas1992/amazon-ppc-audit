@@ -256,7 +256,7 @@ export default function CampaignOptimizer() {
         </div>
       </div>
 
-      <p className="border-t border-white/[0.06] px-4 py-3 text-[0.66rem] leading-relaxed text-[#7d7d82]">
+      <p className="border-t border-white/[0.08] px-4 py-3 text-[0.72rem] font-semibold leading-relaxed text-[#b4b4b8]">
         A worked demonstration of method, not a client account. Two terms drew clicks and no
         orders, so they go to negative exact. Budget moves to the three that convert.
       </p>

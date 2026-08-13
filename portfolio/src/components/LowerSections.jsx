@@ -34,7 +34,13 @@ export default function LowerSections() {
       <About />
       <SectionBreak />
       <Experience />
-      <div className="border-t border-white/[0.06] bg-[#111113]">
+      <div
+        className="relative overflow-hidden border-t border-white/[0.06]"
+        style={{
+          background:
+            "radial-gradient(60rem 34rem at 50% 0%, rgba(245,197,66,0.07), transparent 60%), linear-gradient(180deg, #111113 0%, #0f0f11 100%)",
+        }}
+      >
         <Contact />
       </div>
     </>

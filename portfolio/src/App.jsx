@@ -13,7 +13,13 @@ export default function App() {
       <SparkleBadge />
       <main>
         <Hero />
-        <div className="border-y border-white/[0.06] bg-[#111113]">
+        <div
+          className="relative overflow-hidden border-y border-white/[0.06]"
+          style={{
+            background:
+              "radial-gradient(50rem 30rem at 15% 0%, rgba(245,197,66,0.06), transparent 60%), linear-gradient(180deg, #111113 0%, #0f0f11 55%, #111113 100%)",
+          }}
+        >
           <Optimizer />
         </div>
         <Suspense fallback={null}>

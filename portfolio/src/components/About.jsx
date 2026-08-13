@@ -40,8 +40,15 @@ const SKILLS = [
 
 export default function About() {
   return (
-    <section id="about" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-36">
-      <div className="grid gap-16 md:grid-cols-2 md:gap-12">
+    <section id="about" className="relative overflow-hidden px-6 py-24 md:px-10 md:py-36">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background: "radial-gradient(44rem 30rem at 90% 10%, rgba(245,197,66,0.05), transparent 65%)",
+        }}
+      />
+      <div className="mx-auto grid max-w-[1400px] gap-16 md:grid-cols-2 md:gap-12">
         {/* Left: statement + bio, enters first */}
         <motion.div
           variants={staggerContainer({ stagger: 0.1 })}
