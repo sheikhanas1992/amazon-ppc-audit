@@ -34,7 +34,6 @@ const ROLES = [
       "Weekly written performance reporting and quarterly growth roadmaps, delivered direct to brand owners.",
       "Aligned creative and listing work to conversion data rather than treating ads and pages as separate problems.",
     ],
-    tags: ["Account audits", "Bid strategy", "Client reporting", "CVR"],
   },
   {
     company: "Sohomax",
@@ -48,7 +47,6 @@ const ROLES = [
       "Built the SOPs, benchmarks and automation the account team runs on, plus unified reporting across regions and marketplaces.",
       "Advanced keyword and ASIN research feeding Brand Analytics-led competitive strategy.",
     ],
-    tags: ["Team lead", "7-figure budgets", "SOPs & automation", "Brand Analytics"],
   },
   {
     company: "Four Twigs LLC",
@@ -61,7 +59,6 @@ const ROLES = [
       "Managed a $2M annual Amazon brand budget across PPC, listings and market research.",
       "Improved conversion rate by 40% through listing and content optimisation.",
     ],
-    tags: ["Product launch", "$2M budget", "Listing optimisation", "Brand strategy"],
   },
   {
     company: "Freelance: Upwork, Fiverr & direct",
@@ -75,9 +72,19 @@ const ROLES = [
       "FBA logistics: replenishment, shipment planning and inventory accuracy.",
       "Ran my own private-label brand on Amazon UK, which is where most of the operational detail came from.",
     ],
-    tags: ["PPC audits", "Amazon SEO", "A+ content", "FBA logistics"],
   },
 ];
+
+function initials(name) {
+  return name
+    .replace(/[():].*$/, "")
+    .split(/[\s,]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+}
 
 function Role({ r, i }) {
   const ref = useRef(null);
@@ -87,53 +94,49 @@ function Role({ r, i }) {
   return (
     <motion.li
       ref={ref}
-      initial={reduce ? false : { opacity: 0, y: 22 }}
+      initial={reduce ? false : { opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.85, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className="relative grid gap-5 border-t border-white/[0.08] py-9 md:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] md:gap-12"
+      transition={{ duration: 0.85, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative list-none rounded-[24px] border border-white/[0.1] bg-[#151517] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#F5C542]/30 hover:shadow-[0_20px_44px_-20px_rgba(0,0,0,0.7)] md:p-9"
     >
-      <div>
-        <div className="font-mono text-[0.62rem] uppercase tracking-[0.15em] text-[#F5C542]">
-          {r.period}
+      <div className="grid gap-6 md:grid-cols-[auto_minmax(0,14rem)_minmax(0,1fr)] md:gap-10">
+        <div
+          aria-hidden
+          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#F5C542]/[0.1] font-mono text-[1.1rem] font-bold text-[#F5C542] transition-colors duration-300 group-hover:bg-[#F5C542]/[0.18]"
+        >
+          {initials(r.company)}
         </div>
-        <div className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.13em] text-[#7d7d82]">
-          {r.place}
+
+        <div>
+          <div className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-[#F5C542]">
+            {r.period}
+          </div>
+          <div className="mt-2 font-mono text-[0.64rem] font-medium uppercase tracking-[0.13em] text-[#9a9a9e]">
+            {r.place}
+          </div>
         </div>
-      </div>
 
-      <div>
-        <h3 className="text-[1.15rem] font-semibold leading-snug text-[#EDE8E0]">
-          {r.company}
-        </h3>
-        <p className="mt-1 text-[0.95rem] font-medium text-[#b4b4b8]">{r.role}</p>
+        <div>
+          <h3 className="text-[1.25rem] font-bold leading-snug text-[#EDE8E0]">{r.company}</h3>
+          <p className="mt-1 text-[1rem] font-semibold text-[#d8d8dc]">{r.role}</p>
 
-        {r.note && (
-          <p className="mt-3 font-mono text-[0.6rem] uppercase leading-relaxed tracking-[0.1em] text-[#7d7d82]">
-            {r.note}
-          </p>
-        )}
+          {r.note && (
+            <p className="mt-3 font-mono text-[0.64rem] font-medium uppercase leading-relaxed tracking-[0.1em] text-[#9a9a9e]">
+              {r.note}
+            </p>
+          )}
 
-        <ul className="mt-5 space-y-2.5">
-          {r.points.map((p, k) => (
-            <li
-              key={k}
-              className="grid grid-cols-[auto_1fr] gap-3 text-[0.94rem] font-medium leading-relaxed text-[#b4b4b8]"
-            >
-              <span aria-hidden className="mt-[0.55em] h-px w-3 bg-[#F5C542] opacity-60" />
-              <span>{p}</span>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-6 flex flex-wrap gap-2">
-          {r.tags.map((t) => (
-            <span
-              key={t}
-              className="rounded-full border border-white/[0.09] px-3 py-1 font-mono text-[0.57rem] uppercase tracking-[0.11em] text-[#9a9a9e] transition-colors duration-150 hover:border-[#F5C542]/40 hover:text-[#EDE8E0]"
-            >
-              {t}
-            </span>
-          ))}
+          <ul className="mt-5 space-y-3">
+            {r.points.map((p, k) => (
+              <li
+                key={k}
+                className="grid grid-cols-[auto_1fr] gap-3 text-[0.96rem] font-medium leading-relaxed text-[#c7c7cc]"
+              >
+                <span aria-hidden className="mt-[0.6em] h-[3px] w-3 rounded-full bg-[#F5C542]" />
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </motion.li>
@@ -147,13 +150,13 @@ export default function Experience() {
         <h2 className="text-[clamp(2.4rem,9vw,6rem)] font-black uppercase leading-[0.85] tracking-[-0.03em] text-[#EDE8E0]">
           Experience
         </h2>
-        <p className="mt-6 max-w-[58ch] text-[1rem] font-medium leading-relaxed text-[#b4b4b8]">
+        <p className="mt-6 max-w-[58ch] text-[1.05rem] font-medium leading-relaxed text-[#b4b4b8]">
           Six years on Amazon advertising, from running my own private-label brand
           to managing seven-figure budgets for 8-figure sellers. Full history on
           LinkedIn.
         </p>
 
-        <ul className="mt-14 list-none border-b border-white/[0.08] p-0">
+        <ul className="mt-14 flex list-none flex-col gap-5 p-0">
           {ROLES.map((r, i) => (
             <Role key={r.company} r={r} i={i} />
           ))}

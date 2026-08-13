@@ -13,7 +13,9 @@ export default function App() {
       <SparkleBadge />
       <main>
         <Hero />
-        <Optimizer />
+        <div className="border-y border-white/[0.06] bg-[#111113]">
+          <Optimizer />
+        </div>
         <Suspense fallback={null}>
           <LowerSections />
         </Suspense>

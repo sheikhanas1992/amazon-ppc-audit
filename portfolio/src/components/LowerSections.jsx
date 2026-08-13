@@ -17,7 +17,7 @@ function SectionBreak() {
         initial="hidden"
         whileInView="show"
         viewport={viewportOnce}
-        className="relative font-mono text-[0.72rem] uppercase tracking-[0.3em] text-[#7d7d82]"
+        className="relative font-mono text-[0.78rem] font-semibold uppercase tracking-[0.3em] text-[#b4b4b8]"
       >
         Track record
       </motion.p>
@@ -34,7 +34,9 @@ export default function LowerSections() {
       <About />
       <SectionBreak />
       <Experience />
-      <Contact />
+      <div className="border-t border-white/[0.06] bg-[#111113]">
+        <Contact />
+      </div>
     </>
   );
 }
