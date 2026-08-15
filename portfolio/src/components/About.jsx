@@ -3,10 +3,13 @@ import { fadeUp, staggerContainer, staggerItem, viewportOnce } from "../lib/moti
 
 const BIO = [
   "What you just watched happen to one campaign is what I do to an entire account, every week.",
-  "Most Amazon brands don't have a traffic problem. They have a structure problem. Spend climbs, ACOS drifts, and campaigns quietly turn from a growth engine into a fixed cost that nobody wants to be the one to question.",
-  "My approach is Audit, Fix, Scale. Audit means reading the account as it actually is, not as the dashboard summarises it: search term reports, bid history, placement data, and the listings the traffic lands on. Fix means restructuring before spending, because pushing budget into a page that doesn't convert only makes the loss arrive faster. Scale means expanding what's proven, on a system, with a TACOS ceiling and a stop-loss rule that are agreed before the money moves.",
-  "No guesswork. Every decision has a reason I can explain to you, and every week you get it in writing.",
-  "I also offer a free full account audit covering PPC, listings and growth opportunities. If your ads feel unstructured, unprofitable or hard to scale, that's the place to start.",
+  "Most Amazon brands don't have a traffic problem. They have a structure problem: spend climbs, ACOS drifts, and a growth engine quietly turns into a cost nobody wants to question.",
+  "My approach is Audit, Fix, Scale.",
+  "Audit reads the account as it actually is, not as the dashboard summarises it: search term reports, bid history, placement data, and the pages the traffic lands on.",
+  "Fix restructures before spending. Pushing budget into a page that doesn't convert only makes the loss arrive faster.",
+  "Scale expands what's proven, on a system, with a TACOS ceiling and a stop-loss rule agreed before the money moves.",
+  "No guesswork. Every decision has a reason I can explain to you, in writing, every week.",
+  "I also run a free full account audit covering PPC, listings and growth opportunities. If your ads feel unstructured, unprofitable or hard to scale, that's the place to start.",
 ];
 
 const SKILLS = [
