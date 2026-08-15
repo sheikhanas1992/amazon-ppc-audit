@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const LINKS = [
-  { href: "#work", label: "Work" },
+  { href: "#selected-work", label: "Work" },
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
   { href: "/audit", label: "Get an audit" },

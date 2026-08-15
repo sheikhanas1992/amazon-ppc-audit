@@ -126,11 +126,13 @@ export default function Hero() {
         {[
           {
             align: "md:text-left",
-            body: "Most sellers hire someone to run ads. What they actually need is someone who treats ads, listings and launches as one system, because no campaign can fix a page that does not convert. I run that whole system for 5 to 8 figure Amazon brands.",
+            body: "Most sellers hire someone to run ads. What they actually need is someone who treats ads, listings and launches as one system, because no campaign can fix a page that does not convert.",
+            highlight: "I run that whole system for 5 to 8 figure Amazon brands.",
           },
           {
             align: "md:text-right",
             body: "Six years in. 400+ products launched, brands running $2M to $10M a year, and a 40% conversion lift from listing and creative work. Currently more than 20 accounts across supplements, personal care, home, sporting goods and hardware.",
+            highlight: null,
           },
         ].map((c, i) => (
           <motion.p
@@ -141,6 +143,7 @@ export default function Hero() {
             className={`max-w-[34ch] ${c.align}`}
           >
             {c.body}
+            {c.highlight && <span className="font-semibold text-[#F5C542]"> {c.highlight}</span>}
           </motion.p>
         ))}
       </div>
