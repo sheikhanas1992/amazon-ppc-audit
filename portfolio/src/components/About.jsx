@@ -2,10 +2,11 @@ import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, staggerItem, viewportOnce } from "../lib/motion";
 
 const BIO = [
-  "Most Amazon brands don't have a traffic problem. They have a PPC structure problem: ad spend keeps increasing, ACOS becomes unstable, and campaigns turn into a cost instead of a growth engine.",
-  "I help 6 to 8 figure Amazon brands scale with PPC by building structured, data-driven systems that turn ad spend into consistent, profitable growth. Hands-on experience managing $50K+ a month in ad spend across multiple brands.",
-  "My approach is simple: Audit, Fix, Scale. I find the inefficiencies, restructure the campaigns, and reallocate spend, then scale what's performing. No guesswork, just structured execution focused on ACOS control, TACOS stability and profitability.",
-  "I also offer a free full account audit, covering PPC, listing and growth opportunities. If your PPC feels unstructured, unprofitable or hard to scale, that's the place to start.",
+  "What you just watched happen to one campaign is what I do to an entire account, every week.",
+  "Most Amazon brands don't have a traffic problem. They have a structure problem. Spend climbs, ACOS drifts, and campaigns quietly turn from a growth engine into a fixed cost that nobody wants to be the one to question.",
+  "My approach is Audit, Fix, Scale. Audit means reading the account as it actually is, not as the dashboard summarises it: search term reports, bid history, placement data, and the listings the traffic lands on. Fix means restructuring before spending, because pushing budget into a page that doesn't convert only makes the loss arrive faster. Scale means expanding what's proven, on a system, with a TACOS ceiling and a stop-loss rule that are agreed before the money moves.",
+  "No guesswork. Every decision has a reason I can explain to you, and every week you get it in writing.",
+  "I also offer a free full account audit covering PPC, listings and growth opportunities. If your ads feel unstructured, unprofitable or hard to scale, that's the place to start.",
 ];
 
 const SKILLS = [
@@ -15,26 +16,36 @@ const SKILLS = [
       "Sponsored Products",
       "Sponsored Brands",
       "Sponsored Display",
-      "Campaign Structure & Scaling",
-      "Intent-Based Targeting",
-      "Negative Sculpting",
-      "Bid Control",
-      "PPC Automation (Scale Insights)",
+      "Campaign structure & scaling",
+      "Intent-based targeting",
+      "Negative sculpting",
+      "Bid & placement control",
+      "Automation via Scale Insights",
     ],
   },
   {
     label: "Research & Listings",
+    tags: ["Keyword research", "Competitor & ASIN analysis", "Listing SEO & conversion", "Product & sourcing research"],
+  },
+  {
+    label: "Creative & Content",
     tags: [
-      "Keyword Research",
-      "Competitor Analysis",
-      "Listing SEO & CRO",
+      "Listing images",
       "A+ Content",
-      "Product & Sourcing Research",
+      "Product photography direction",
+      "Infographics & comparison charts",
+      "Brand Store",
+      "Creative testing",
     ],
   },
   {
     label: "Launch & Reporting",
-    tags: ["Product Launches", "Full Account Audits", "Daily, Weekly & Monthly Reporting"],
+    tags: [
+      "Product launches",
+      "Full account audits",
+      "Weekly & monthly written reporting",
+      "Custom performance trackers & SEO gap analysis",
+    ],
   },
 ];
 
@@ -92,10 +103,10 @@ export default function About() {
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="flex flex-col gap-10 md:pt-2"
+          className="flex flex-col md:pt-2"
         >
-          {SKILLS.map((block) => (
-            <div key={block.label}>
+          {SKILLS.map((block, i) => (
+            <div key={block.label} className={i > 0 ? "mt-8 border-t border-white/[0.08] pt-8" : ""}>
               <motion.h3
                 variants={fadeUp({ distance: 12, duration: 0.7 })}
                 className="font-mono text-[0.74rem] font-bold uppercase tracking-[0.16em] text-[#EDE8E0]"
@@ -118,6 +129,14 @@ export default function About() {
               </motion.div>
             </div>
           ))}
+
+          <motion.p
+            variants={fadeUp({ distance: 10 })}
+            className="mt-8 border-t border-white/[0.08] pt-6 text-[0.82rem] italic leading-relaxed text-[#7d7d82]"
+          >
+            Tooling: Scale Insights, Helium 10, Data Dive, Jungle Scout, Brand Analytics, plus
+            trackers and reporting workbooks I build per account.
+          </motion.p>
         </motion.div>
       </div>
     </section>

@@ -126,7 +126,7 @@ export default function Hero() {
         {[
           {
             align: "md:text-left",
-            body: "I help 6 to 8 figure Amazon brands scale with PPC. Hands-on experience managing $50K+ a month in ad spend, turning wasted spend into consistent, profitable growth.",
+            body: "I help 6 to 8 figure Amazon brands scale with PPC. Hands-on experience across supplements, personal care, home, sporting goods and hardware, turning wasted spend into consistent, profitable growth.",
           },
           {
             align: "md:text-right",

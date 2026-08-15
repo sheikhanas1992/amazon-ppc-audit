@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import HowIWork from "./HowIWork";
 import About from "./About";
 import Experience from "./Experience";
 import Contact from "./Contact";
@@ -31,6 +32,7 @@ function SectionBreak() {
 export default function LowerSections() {
   return (
     <>
+      <HowIWork />
       <About />
       <SectionBreak />
       <Experience />
