@@ -18,7 +18,7 @@ function SectionBreak() {
         initial="hidden"
         whileInView="show"
         viewport={viewportOnce}
-        className="relative font-mono text-[0.78rem] font-semibold uppercase tracking-[0.3em] text-[#b4b4b8]"
+        className="relative font-mono text-[0.78rem] font-semibold uppercase tracking-[0.3em] text-[#c7c7cc]"
       >
         Track record
       </motion.p>
@@ -32,10 +32,10 @@ function SectionBreak() {
 export default function LowerSections() {
   return (
     <>
-      <HowIWork />
       <About />
       <SectionBreak />
       <Experience />
+      <HowIWork />
       <div
         className="relative overflow-hidden border-t border-white/[0.06]"
         style={{

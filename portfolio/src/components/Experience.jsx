@@ -198,7 +198,7 @@ export default function Experience() {
         <h2 className="text-[clamp(2.4rem,9vw,6rem)] font-black uppercase leading-[0.85] tracking-[-0.03em] text-[#EDE8E0]">
           Experience
         </h2>
-        <p className="mt-6 max-w-[58ch] text-[1.05rem] font-medium leading-relaxed text-[#b4b4b8]">
+        <p className="mt-6 max-w-[58ch] text-[1.05rem] font-medium leading-relaxed text-[#c7c7cc]">
           Six years on Amazon advertising, from running my own private-label brand
           to managing seven-figure budgets for 8-figure sellers. Full history on
           LinkedIn.

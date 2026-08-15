@@ -122,15 +122,15 @@ export default function Hero() {
       </motion.div>
 
       {/* Footer copy */}
-      <div className="mx-auto mt-12 flex w-full max-w-[1400px] flex-col gap-8 text-[0.96rem] font-medium leading-relaxed text-[#b4b4b8] md:mt-20 md:flex-row md:justify-between md:gap-16">
+      <div className="mx-auto mt-12 flex w-full max-w-[1400px] flex-col gap-8 text-[0.96rem] font-medium leading-relaxed text-[#c7c7cc] md:mt-20 md:flex-row md:justify-between md:gap-16">
         {[
           {
             align: "md:text-left",
-            body: "I help 6 to 8 figure Amazon brands scale with PPC. Hands-on experience across supplements, personal care, home, sporting goods and hardware, turning wasted spend into consistent, profitable growth.",
+            body: "Most sellers hire someone to run ads. What they actually need is someone who treats ads, listings and launches as one system, because no campaign can fix a page that does not convert. I run that whole system for 5 to 8 figure Amazon brands.",
           },
           {
             align: "md:text-right",
-            body: "Sponsored Products, Sponsored Brands and Sponsored Display, campaign structure, listing SEO and full account audits, for brands ready to scale profitably.",
+            body: "Six years in. 400+ products launched, brands running $2M to $10M a year, and a 40% conversion lift from listing and creative work. Currently more than 20 accounts across supplements, personal care, home, sporting goods and hardware.",
           },
         ].map((c, i) => (
           <motion.p

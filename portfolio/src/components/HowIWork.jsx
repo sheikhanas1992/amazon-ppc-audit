@@ -52,17 +52,13 @@ export default function HowIWork() {
         }}
       />
       <div className="mx-auto max-w-[1300px]">
-        <h2 className="text-[clamp(2.4rem,9vw,6rem)] font-black uppercase leading-[0.85] tracking-[-0.03em] text-[#EDE8E0]">
-          How I work
-        </h2>
-
-        <div className="mt-14 grid gap-14 md:grid-cols-2 md:gap-16">
+        <div className="grid gap-14 md:grid-cols-2 md:gap-16">
           {/* Left: rules, equal visual weight, no descriptions */}
           <div>
-            <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#7d7d82]">
+            <h2 className="max-w-[16ch] text-[clamp(1.7rem,3.4vw,2.6rem)] font-black normal-case leading-[1.15] tracking-[-0.01em] text-[#EDE8E0]">
               Rules I run accounts by
-            </span>
-            <p className="mt-2 text-[0.9rem] font-medium italic text-[#9a9a9e]">
+            </h2>
+            <p className="mt-3 text-[0.95rem] font-medium italic text-[#c7c7cc]">
               Agreed before I start, not invented after a bad week.
             </p>
             <motion.ul
@@ -87,9 +83,9 @@ export default function HowIWork() {
 
           {/* Right: reasons, bold claim plus one supporting line each */}
           <div>
-            <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#7d7d82]">
+            <h2 className="max-w-[16ch] text-[clamp(1.7rem,3.4vw,2.6rem)] font-black normal-case leading-[1.15] tracking-[-0.01em] text-[#EDE8E0]">
               Why work with me
-            </span>
+            </h2>
             <motion.ul
               variants={staggerContainer({ stagger: 0.08 })}
               initial="hidden"
@@ -100,7 +96,7 @@ export default function HowIWork() {
               {REASONS.map((r) => (
                 <motion.li key={r.claim} variants={fadeUp({ distance: 14 })} className="border-l-2 border-[#F5C542]/50 pl-5">
                   <p className="text-[1.02rem] font-bold leading-snug text-[#EDE8E0]">{r.claim}</p>
-                  <p className="mt-1.5 max-w-[42ch] text-[0.92rem] font-medium leading-relaxed text-[#9a9a9e]">
+                  <p className="mt-1.5 max-w-[42ch] text-[0.92rem] font-medium leading-relaxed text-[#c7c7cc]">
                     {r.body}
                   </p>
                 </motion.li>

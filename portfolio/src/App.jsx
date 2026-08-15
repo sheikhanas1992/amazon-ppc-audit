@@ -1,7 +1,6 @@
 import { lazy, Suspense } from "react";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
-import SplitIntro from "./components/SplitIntro";
 import Optimizer from "./components/Optimizer";
 import SparkleBadge from "./components/SparkleBadge";
 
@@ -14,7 +13,6 @@ export default function App() {
       <SparkleBadge />
       <main>
         <Hero />
-        <SplitIntro />
         <div
           className="relative overflow-hidden border-y border-white/[0.06]"
           style={{

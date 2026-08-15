@@ -49,7 +49,7 @@ function CampaignStrip() {
             {s.label}
           </div>
           <div className="mt-2 font-mono text-[0.9rem] font-semibold text-[#EDE8E0]">{s.change}</div>
-          <p className="mt-3 text-[0.86rem] leading-relaxed text-[#9a9a9e]">{s.note}</p>
+          <p className="mt-3 text-[0.86rem] leading-relaxed text-[#c7c7cc]">{s.note}</p>
         </motion.div>
       ))}
     </motion.div>
@@ -69,7 +69,7 @@ export default function Optimizer() {
         <div className="max-w-[56ch]">
           <motion.span
             variants={fadeUp({ distance: 12 })}
-            className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[#7d7d82]"
+            className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[#9a9a9e]"
           >
             Anyone can show you a dashboard
           </motion.span>
@@ -79,7 +79,7 @@ export default function Optimizer() {
           >
             This is the decision underneath it
           </motion.h2>
-          <motion.p variants={fadeUp({ distance: 14 })} className="mt-4 text-[1rem] font-medium text-[#b4b4b8]">
+          <motion.p variants={fadeUp({ distance: 14 })} className="mt-4 text-[1rem] font-medium text-[#c7c7cc]">
             A 30-day search term report from one Sponsored Products campaign. Toggle it and watch
             wasted spend get negated and budget move to what converts.
           </motion.p>

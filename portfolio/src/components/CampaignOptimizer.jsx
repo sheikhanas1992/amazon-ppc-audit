@@ -33,7 +33,7 @@ const ACTION_TONE = {
   negate: "#E08D74",
   bidup: "#9BE6B4",
   biddown: "#F5C542",
-  hold: "#9a9a9e",
+  hold: "#c7c7cc",
 };
 
 /* Nine search terms from a real 30-day Sponsored Products report. Verified
@@ -141,7 +141,7 @@ function Stat({ label, value, format, delta, invert }) {
   const good = invert ? delta < 0 : delta > 0;
   return (
     <div className="flex-1 min-w-[7.5rem] px-4 py-3">
-      <div className="text-[0.6rem] uppercase tracking-[0.16em] text-[#7d7d82]">{label}</div>
+      <div className="text-[0.6rem] uppercase tracking-[0.16em] text-[#9a9a9e]">{label}</div>
       <div className="mt-1 flex items-baseline gap-2">
         <span className="font-mono text-xl tabular-nums text-[#EDE8E0]">{format(n)}</span>
         <AnimatePresence>
@@ -186,14 +186,14 @@ function Row({ t, optimized, i, expanded, onToggle }) {
           </span>
         </td>
         <td className={`hidden px-3 text-right font-mono text-[0.75rem] tabular-nums transition-colors duration-500 sm:table-cell ${
-          dead ? "text-[#5c5c61]" : "text-[#9a9a9e]"
+          dead ? "text-[#5c5c61]" : "text-[#c7c7cc]"
         }`}>
           {dead ? "0" : s.clicks}
         </td>
-        <td className="px-3 text-right font-mono text-[0.75rem] tabular-nums text-[#9a9a9e]">
+        <td className="px-3 text-right font-mono text-[0.75rem] tabular-nums text-[#c7c7cc]">
           {dead ? "-" : "$" + s.bid.toFixed(2)}
         </td>
-        <td className="px-3 text-right font-mono text-[0.75rem] tabular-nums text-[#9a9a9e]">
+        <td className="px-3 text-right font-mono text-[0.75rem] tabular-nums text-[#c7c7cc]">
           {dead ? "-" : money(s.spend)}
         </td>
         <td className="px-3 text-right font-mono text-[0.75rem] tabular-nums">
@@ -245,7 +245,7 @@ function Row({ t, optimized, i, expanded, onToggle }) {
                 transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                 className="overflow-hidden"
               >
-                <p className="px-4 py-3 text-[0.8rem] leading-relaxed text-[#9a9a9e]">{t.reason}</p>
+                <p className="px-4 py-3 text-[0.8rem] leading-relaxed text-[#c7c7cc]">{t.reason}</p>
               </motion.div>
             </td>
           </motion.tr>
@@ -291,7 +291,7 @@ export default function CampaignOptimizer() {
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.06] px-4 py-3">
         <div className="flex items-center gap-2.5">
           <span className="h-1.5 w-1.5 rounded-full bg-[#9BE6B4]" />
-          <span className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[#9a9a9e]">
+          <span className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[#c7c7cc]">
             Search term report · one Sponsored Products campaign · 30 days
           </span>
         </div>
@@ -315,7 +315,7 @@ export default function CampaignOptimizer() {
               onClick={() => setState(k)}
               aria-pressed={optimized === k}
               className="relative z-10 rounded-full px-3.5 py-1.5 font-mono text-[0.6rem] uppercase tracking-[0.12em] transition-colors duration-300"
-              style={{ color: optimized === k ? "#0d0d0f" : "#9a9a9e" }}
+              style={{ color: optimized === k ? "#0d0d0f" : "#c7c7cc" }}
             >
               {optimized === k && (
                 <motion.span
@@ -344,7 +344,7 @@ export default function CampaignOptimizer() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[660px] border-collapse">
             <thead>
-              <tr className="text-[0.58rem] uppercase tracking-[0.14em] text-[#7d7d82]">
+              <tr className="text-[0.58rem] uppercase tracking-[0.14em] text-[#9a9a9e]">
                 <th className="py-2.5 pl-4 pr-3 text-left font-normal">Customer search term</th>
                 <th className="hidden px-3 text-right font-normal sm:table-cell">Clicks</th>
                 <th className="px-3 text-right font-normal">Bid</th>
@@ -369,7 +369,7 @@ export default function CampaignOptimizer() {
         </div>
       </div>
 
-      <p className="border-t border-white/[0.08] px-4 py-3 text-[0.72rem] font-semibold leading-relaxed text-[#b4b4b8]">
+      <p className="border-t border-white/[0.08] px-4 py-3 text-[0.72rem] font-semibold leading-relaxed text-[#c7c7cc]">
         A worked demonstration of method, not a client account.
       </p>
     </div>

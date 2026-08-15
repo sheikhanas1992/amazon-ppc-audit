@@ -79,7 +79,7 @@ export default function About() {
               <motion.p
                 key={i}
                 variants={fadeUp({ distance: 16 })}
-                className="max-w-[58ch] text-[1rem] font-medium leading-relaxed text-[#b4b4b8]"
+                className="max-w-[58ch] text-[1rem] font-medium leading-relaxed text-[#c7c7cc]"
               >
                 {p}
               </motion.p>
@@ -121,7 +121,7 @@ export default function About() {
                   <motion.span
                     key={tag}
                     variants={staggerItem}
-                    className="rounded-full border border-white/[0.09] bg-[#151517] px-3 py-1.5 font-mono text-[0.62rem] font-medium uppercase tracking-[0.1em] text-[#b4b4b8] transition-colors duration-150 hover:border-[#F5C542]/40 hover:text-[#EDE8E0]"
+                    className="rounded-full border border-white/[0.09] bg-[#151517] px-3 py-1.5 font-mono text-[0.62rem] font-medium uppercase tracking-[0.1em] text-[#c7c7cc] transition-colors duration-150 hover:border-[#F5C542]/40 hover:text-[#EDE8E0]"
                   >
                     {tag}
                   </motion.span>
@@ -132,7 +132,7 @@ export default function About() {
 
           <motion.p
             variants={fadeUp({ distance: 10 })}
-            className="mt-8 border-t border-white/[0.08] pt-6 text-[0.82rem] italic leading-relaxed text-[#7d7d82]"
+            className="mt-8 border-t border-white/[0.08] pt-6 text-[0.82rem] italic leading-relaxed text-[#9a9a9e]"
           >
             Tooling: Scale Insights, Helium 10, Data Dive, Jungle Scout, Brand Analytics, plus
             trackers and reporting workbooks I build per account.

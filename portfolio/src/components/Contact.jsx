@@ -106,7 +106,7 @@ export default function Contact() {
           Let's talk
         </motion.h2>
 
-        <motion.p variants={fadeUp({ distance: 16 })} className="mx-auto mt-6 max-w-[46ch] text-[1.02rem] font-medium text-[#b4b4b8]">
+        <motion.p variants={fadeUp({ distance: 16 })} className="mx-auto mt-6 max-w-[46ch] text-[1.02rem] font-medium text-[#c7c7cc]">
           If your PPC feels unstructured, unprofitable or hard to scale, send me the account and
           I'll tell you what I see in it.
         </motion.p>
@@ -130,14 +130,14 @@ export default function Contact() {
             target="_blank"
             rel="noreferrer"
             aria-label="Sheikh Anas on LinkedIn"
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.16] text-[#b4b4b8] transition-all duration-200 hover:-translate-y-1 hover:border-[#F5C542]/60 hover:text-[#F5C542]"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.16] text-[#c7c7cc] transition-all duration-200 hover:-translate-y-1 hover:border-[#F5C542]/60 hover:text-[#F5C542]"
           >
             <LinkedInIcon className="h-[18px] w-[18px]" />
           </a>
           <a
             href={`mailto:${EMAIL}`}
             aria-label="Email Sheikh Anas"
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.16] text-[#b4b4b8] transition-all duration-200 hover:-translate-y-1 hover:border-[#F5C542]/60 hover:text-[#F5C542]"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.16] text-[#c7c7cc] transition-all duration-200 hover:-translate-y-1 hover:border-[#F5C542]/60 hover:text-[#F5C542]"
           >
             <GmailIcon className="h-[19px] w-[19px]" />
           </a>
@@ -146,14 +146,14 @@ export default function Contact() {
             target="_blank"
             rel="noreferrer"
             aria-label="Message Sheikh Anas on WhatsApp"
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.16] text-[#b4b4b8] transition-all duration-200 hover:-translate-y-1 hover:border-[#F5C542]/60 hover:text-[#F5C542]"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.16] text-[#c7c7cc] transition-all duration-200 hover:-translate-y-1 hover:border-[#F5C542]/60 hover:text-[#F5C542]"
           >
             <WhatsAppIcon className="h-[19px] w-[19px]" />
           </a>
         </motion.div>
       </motion.div>
 
-      <footer className="mt-20 flex flex-col items-center gap-4 border-t border-white/[0.1] pt-8 text-[0.8rem] font-semibold text-[#b4b4b8] md:flex-row md:justify-between">
+      <footer className="mt-20 flex flex-col items-center gap-4 border-t border-white/[0.1] pt-8 text-[0.8rem] font-semibold text-[#c7c7cc] md:flex-row md:justify-between">
         <span className="font-mono uppercase tracking-[0.12em]">© {new Date().getFullYear()} Sheikh Anas</span>
         <div className="flex gap-6 font-mono uppercase tracking-[0.12em]">
           <a href={LINKEDIN} target="_blank" rel="noreferrer" className="transition-colors hover:text-[#EDE8E0]">
