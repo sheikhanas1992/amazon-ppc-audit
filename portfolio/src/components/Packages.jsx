@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { fadeUp, staggerContainer, staggerItem, viewportOnce } from "../lib/motion";
+import { EASE, fadeUp, staggerContainer, staggerItem, viewportOnce } from "../lib/motion";
 import ComparisonTable from "./ComparisonTable";
 
 const CALENDLY = "https://calendly.com/sheikhanas1992/30min";
@@ -84,6 +84,108 @@ function Check() {
   );
 }
 
+/* Rungs get visually heavier as the tier climbs, so the badge alone reads
+   as a progression before any copy is read. */
+const RUNG_BADGE = [
+  "border border-white/[0.18] bg-[#0d0d0f] text-[#c7c7cc]",
+  "border border-[#F5C542]/45 bg-[#F5C542]/[0.12] text-[#F5C542]",
+  "border border-[#F5C542] bg-[#F5C542] text-[#0d0d0f]",
+];
+
+/** Mobile-only: Launch, Scale and Dominate as a connected, one-open-at-a-time
+ * ladder instead of three more stacked cards (Build Your Own stays a
+ * standalone hero card above this). */
+function MobileLadder() {
+  const [openKey, setOpenKey] = useState(null);
+
+  return (
+    <div className="relative">
+      <div
+        aria-hidden
+        className="absolute left-[19px] top-9 bottom-9 w-px bg-gradient-to-b from-white/[0.18] via-[#F5C542]/40 to-[#F5C542]"
+      />
+      <div className="flex flex-col gap-3">
+        {TIERS.map((tier, i) => {
+          const open = openKey === tier.key;
+          return (
+            <div key={tier.key} className="relative pl-12">
+              <span
+                aria-hidden
+                className={`absolute -left-0 top-4 flex h-9 w-9 items-center justify-center rounded-full font-mono text-[0.8rem] font-bold ${RUNG_BADGE[i]}`}
+              >
+                {i + 1}
+              </span>
+
+              <button
+                type="button"
+                onClick={() => setOpenKey(open ? null : tier.key)}
+                aria-expanded={open}
+                className={`flex w-full items-center justify-between gap-3 rounded-[16px] border px-4 py-4 text-left transition-colors duration-200 ${
+                  open ? "border-[#F5C542]/40 bg-[#1a1712]" : "border-white/[0.1] bg-[#151517]"
+                }`}
+              >
+                <span>
+                  <span className="block text-[1.05rem] font-black normal-case leading-tight text-[#EDE8E0]">
+                    {tier.name}
+                  </span>
+                  <span className="mt-0.5 block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[#F5C542]">
+                    {tier.count}
+                  </span>
+                </span>
+                <span
+                  aria-hidden
+                  className={`shrink-0 text-[1.1rem] text-[#F5C542] transition-transform duration-300 ${open ? "-rotate-180" : ""}`}
+                >
+                  ⌄
+                </span>
+              </button>
+
+              <AnimatePresence initial={false}>
+                {open && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: EASE }}
+                    className="overflow-hidden"
+                  >
+                    <div className="mt-2 rounded-[16px] border border-white/[0.08] bg-[#131315] p-5">
+                      <p className="text-[0.9rem] font-medium leading-snug text-[#c7c7cc]">{tier.description}</p>
+                      <ul className="mt-4 flex flex-col gap-2.5">
+                        {tier.items.map((item) => (
+                          <li
+                            key={item}
+                            className="grid grid-cols-[auto_1fr] gap-2.5 text-[0.85rem] font-medium leading-snug text-[#d8d8dc]"
+                          >
+                            <Check />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      {tier.more && (
+                        <p className="mt-3 text-[0.78rem] font-medium italic text-[#9a9a9e]">{tier.more}</p>
+                      )}
+                      <a
+                        href={tier.href}
+                        target={tier.href.startsWith("http") ? "_blank" : undefined}
+                        rel={tier.href.startsWith("http") ? "noreferrer" : undefined}
+                        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/[0.16] px-5 py-3 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#d8d8dc] transition-all duration-200 active:border-[#F5C542]/50 active:bg-[#F5C542]/[0.08] active:text-[#F5C542]"
+                      >
+                        {tier.button}
+                        <span aria-hidden>→</span>
+                      </a>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function Card({ tier, feature = false }) {
   return (
     <motion.div
@@ -164,17 +266,31 @@ export default function Packages() {
           </motion.p>
         </motion.div>
 
+        {/* Desktop and tablet: four cards, equal height, in a grid. */}
         <motion.div
           variants={staggerContainer({ stagger: 0.08, delayChildren: 0.1 })}
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="mt-14 grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 lg:grid-cols-4"
+          className="mt-14 hidden items-stretch gap-5 md:grid md:grid-cols-2 lg:grid-cols-4"
         >
           {TIERS.map((tier) => (
             <Card key={tier.key} tier={tier} />
           ))}
           <Card tier={BUILD_YOUR_OWN} feature />
+        </motion.div>
+
+        {/* Mobile: Build Your Own stays a hero card up top, Launch/Scale/Dominate
+            become a connected, tap-to-expand ladder instead of more stacked cards. */}
+        <motion.div
+          variants={staggerContainer({ stagger: 0.1, delayChildren: 0.1 })}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+          className="mt-14 flex flex-col gap-8 md:hidden"
+        >
+          <Card tier={{ ...BUILD_YOUR_OWN, order: "" }} feature />
+          <MobileLadder />
         </motion.div>
 
         <div className="mt-10 flex justify-center">
