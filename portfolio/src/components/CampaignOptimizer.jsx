@@ -141,7 +141,7 @@ function Stat({ label, value, format, delta, invert }) {
   const good = invert ? delta < 0 : delta > 0;
   return (
     <div className="flex-1 min-w-[7.5rem] px-4 py-3">
-      <div className="text-[0.6rem] uppercase tracking-[0.16em] text-[#9a9a9e]">{label}</div>
+      <div className="text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-[#c7c7cc]">{label}</div>
       <div className="mt-1 flex items-baseline gap-2">
         <span className="font-mono text-xl tabular-nums text-[#EDE8E0]">{format(n)}</span>
         <AnimatePresence>
@@ -150,7 +150,7 @@ function Stat({ label, value, format, delta, invert }) {
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="font-mono text-[0.7rem] tabular-nums"
+              className="font-mono text-[0.75rem] font-bold tabular-nums"
               style={{ color: good ? "#9BE6B4" : "#E08D74" }}
             >
               {delta > 0 ? "+" : "−"}
@@ -178,25 +178,25 @@ function Row({ t, optimized, i, expanded, onToggle }) {
       >
         <td className="py-2.5 pl-4 pr-3">
           <span
-            className={`whitespace-nowrap text-[0.82rem] transition-colors duration-500 ${
+            className={`whitespace-nowrap text-[0.86rem] font-semibold transition-colors duration-500 ${
               dead ? "text-[#5c5c61] line-through" : "text-[#EDE8E0]"
             }`}
           >
             {t.term}
           </span>
         </td>
-        <td className={`hidden px-3 text-right font-mono text-[0.75rem] tabular-nums transition-colors duration-500 sm:table-cell ${
-          dead ? "text-[#5c5c61]" : "text-[#c7c7cc]"
+        <td className={`hidden px-3 text-right font-mono text-[0.8rem] font-semibold tabular-nums transition-colors duration-500 sm:table-cell ${
+          dead ? "text-[#5c5c61]" : "text-[#EDE8E0]"
         }`}>
           {dead ? "0" : s.clicks}
         </td>
-        <td className="px-3 text-right font-mono text-[0.75rem] tabular-nums text-[#c7c7cc]">
+        <td className="px-3 text-right font-mono text-[0.8rem] font-semibold tabular-nums text-[#EDE8E0]">
           {dead ? "-" : "$" + s.bid.toFixed(2)}
         </td>
-        <td className="px-3 text-right font-mono text-[0.75rem] tabular-nums text-[#c7c7cc]">
+        <td className="px-3 text-right font-mono text-[0.8rem] font-semibold tabular-nums text-[#EDE8E0]">
           {dead ? "-" : money(s.spend)}
         </td>
-        <td className="px-3 text-right font-mono text-[0.75rem] tabular-nums">
+        <td className="px-3 text-right font-mono text-[0.8rem] font-semibold tabular-nums">
           <span style={{ color: dead ? "#5c5c61" : s.acos > 40 ? "#E08D74" : "#9BE6B4" }}>
             {dead ? "-" : s.acos.toFixed(1) + "%"}
           </span>
@@ -210,7 +210,7 @@ function Row({ t, optimized, i, expanded, onToggle }) {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ delay: 0.15 + i * 0.04 }}
-                className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-[3px] font-mono text-[0.58rem] uppercase tracking-[0.1em]"
+                className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-[3px] font-mono text-[0.62rem] font-bold uppercase tracking-[0.1em]"
                 style={{
                   borderColor: `${ACTION_TONE[t.action]}59`,
                   color: ACTION_TONE[t.action],
@@ -245,7 +245,7 @@ function Row({ t, optimized, i, expanded, onToggle }) {
                 transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                 className="overflow-hidden"
               >
-                <p className="px-4 py-3 text-[0.8rem] leading-relaxed text-[#c7c7cc]">{t.reason}</p>
+                <p className="px-4 py-3 text-[0.85rem] font-medium leading-relaxed text-[#EDE8E0]">{t.reason}</p>
               </motion.div>
             </td>
           </motion.tr>
@@ -291,7 +291,7 @@ export default function CampaignOptimizer() {
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.06] px-4 py-3">
         <div className="flex items-center gap-2.5">
           <span className="h-1.5 w-1.5 rounded-full bg-[#9BE6B4]" />
-          <span className="font-mono text-[0.62rem] uppercase tracking-[0.16em] text-[#c7c7cc]">
+          <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#d8d8dc]">
             Search term report · one Sponsored Products campaign · 30 days
           </span>
         </div>
@@ -314,8 +314,8 @@ export default function CampaignOptimizer() {
               key={label}
               onClick={() => setState(k)}
               aria-pressed={optimized === k}
-              className="relative z-10 rounded-full px-3.5 py-1.5 font-mono text-[0.6rem] uppercase tracking-[0.12em] transition-colors duration-300"
-              style={{ color: optimized === k ? "#0d0d0f" : "#c7c7cc" }}
+              className="relative z-10 rounded-full px-3.5 py-1.5 font-mono text-[0.64rem] font-bold uppercase tracking-[0.12em] transition-colors duration-300"
+              style={{ color: optimized === k ? "#0d0d0f" : "#d8d8dc" }}
             >
               {optimized === k && (
                 <motion.span
@@ -344,7 +344,7 @@ export default function CampaignOptimizer() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[660px] border-collapse">
             <thead>
-              <tr className="text-[0.58rem] uppercase tracking-[0.14em] text-[#9a9a9e]">
+              <tr className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-[#c7c7cc]">
                 <th className="py-2.5 pl-4 pr-3 text-left font-normal">Customer search term</th>
                 <th className="hidden px-3 text-right font-normal sm:table-cell">Clicks</th>
                 <th className="px-3 text-right font-normal">Bid</th>
