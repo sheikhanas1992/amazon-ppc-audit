@@ -105,52 +105,45 @@ function CampaignStrip() {
         </div>
       </div>
 
-      {/* Desktop: descending staircase */}
-      <div className="hidden md:block">
-        <div className="relative" style={{ height: STAIR_ZONE }}>
-          <svg
-            aria-hidden
-            viewBox={`0 0 100 ${STAIR_ZONE}`}
-            preserveAspectRatio="none"
-            className="pointer-events-none absolute inset-0 h-full w-full"
-          >
-            <defs>
-              <linearGradient id="stairRail" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#9BE6B4" />
-                <stop offset="50%" stopColor="#F5C542" />
-                <stop offset="100%" stopColor="#8FB8E8" />
-              </linearGradient>
-            </defs>
-            <motion.path
-              d={`M 16.7 24 L 50 ${STAIR_STEP + 24} L 83.3 ${STAIR_STEP * 2 + 24}`}
-              fill="none"
-              stroke="url(#stairRail)"
-              strokeWidth="1.5"
-              vectorEffect="non-scaling-stroke"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              viewport={viewportOnce}
-              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            />
-          </svg>
-          {STRIP.map((s, i) => (
-            <PulseNode
-              key={s.label}
-              s={s}
-              i={i}
-              className="-translate-x-1/2"
-              style={{
-                position: "absolute",
-                left: `${(i + 0.5) * (100 / STRIP.length)}%`,
-                top: i * STAIR_STEP,
-              }}
-            />
-          ))}
-        </div>
+      {/* Desktop: descending staircase -- node AND card both step down together,
+          so the whole milestone (not just its dot) reads as a stair tread. */}
+      <div className="relative hidden md:block">
+        <svg
+          aria-hidden
+          viewBox={`0 0 100 ${STAIR_ZONE}`}
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute inset-x-0 top-0 w-full"
+          style={{ height: STAIR_ZONE }}
+        >
+          <defs>
+            <linearGradient id="stairRail" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#9BE6B4" />
+              <stop offset="50%" stopColor="#F5C542" />
+              <stop offset="100%" stopColor="#8FB8E8" />
+            </linearGradient>
+          </defs>
+          <motion.path
+            d={`M 16.7 24 L 50 ${STAIR_STEP + 24} L 83.3 ${STAIR_STEP * 2 + 24}`}
+            fill="none"
+            stroke="url(#stairRail)"
+            strokeWidth="1.5"
+            vectorEffect="non-scaling-stroke"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={viewportOnce}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          />
+        </svg>
 
-        <div className="grid grid-cols-3 gap-6">
-          {STRIP.map((s) => (
-            <motion.div key={s.label} variants={staggerItem}>
+        <div className="grid grid-cols-3 items-start gap-6">
+          {STRIP.map((s, i) => (
+            <motion.div
+              key={s.label}
+              variants={staggerItem}
+              className="flex flex-col gap-5"
+              style={{ marginTop: i * STAIR_STEP }}
+            >
+              <PulseNode s={s} i={i} className="self-center" />
               <StepCard s={s} />
             </motion.div>
           ))}

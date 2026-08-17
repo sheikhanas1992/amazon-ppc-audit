@@ -33,7 +33,8 @@ export default function About() {
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
-          background: "radial-gradient(44rem 30rem at 90% 10%, rgba(245,197,66,0.05), transparent 65%)",
+          background:
+            "radial-gradient(44rem 30rem at 90% 10%, rgba(245,197,66,0.07), transparent 65%), linear-gradient(180deg, #131210 0%, #0d0d0f 100%)",
         }}
       />
       <div className="mx-auto grid max-w-[1400px] gap-16 md:grid-cols-2 md:gap-12">
@@ -98,8 +99,9 @@ export default function About() {
         >
           <motion.h3
             variants={fadeUp({ distance: 12 })}
-            className="font-mono text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[#c7c7cc]"
+            className="flex items-center gap-2.5 font-mono text-[0.85rem] font-bold uppercase tracking-[0.14em] text-[#F5C542]"
           >
+            <span aria-hidden className="h-[7px] w-[7px] shrink-0 rounded-full bg-[#F5C542]" />
             My approach: Audit, Fix, Scale
           </motion.h3>
 
