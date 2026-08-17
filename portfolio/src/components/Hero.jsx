@@ -6,22 +6,36 @@ import portraitJpg from "../assets/portrait.jpg";
 /**
  * Hero
  * ---------------------------------------------------------------------------
- * Same composition as the Lovable build: the name is the page. What changes
- * is that it now responds:
+ * Two columns on desktop (name/copy left, portrait right, stat strip full
+ * width below), single column on mobile with the portrait cropped wide and
+ * a 2x2 button grid standing in for the desktop nav actions.
  *
- *  1. The radial spotlight follows the cursor instead of sitting still. The
- *     name is set just barely above the background, so moving the mouse
- *     genuinely reveals it. On touch it settles at centre-top.
- *  2. Characters rise from behind a mask on load, staggered.
- *  3. Scrolling drifts the name up and fades it faster than the page moves,
- *     which reads as depth rather than translation.
+ * Layout is driven by named CSS grid areas so mobile and desktop can reorder
+ * the same elements without duplicating the portrait in the DOM.
  *
- * Everything here is disabled under prefers-reduced-motion.
+ * The name's per-character reveal, the cursor-tracked spotlight and the
+ * scroll-linked fade are unchanged from the previous version, just re-homed
+ * onto the new grid position.
  * ---------------------------------------------------------------------------
  */
 
 const LINE_1 = "SHEIKH";
 const LINE_2 = "ANAS";
+
+const CALENDLY = "https://calendly.com/sheikhanas1992/30min";
+
+const STATS = [
+  { n: "400+", label: "products launched" },
+  { n: "$2M–$10M", label: "brand revenue managed" },
+  { n: "6 yrs", label: "on Amazon advertising" },
+];
+
+const MOBILE_BUTTONS = [
+  { label: "Get a free audit", href: "/audit", filled: true },
+  { label: "Book a strategy call", href: CALENDLY, external: true, filled: false },
+  { label: "See the work", href: "#selected-work", filled: false },
+  { label: "Request services", href: "#packages", filled: false },
+];
 
 export default function Hero() {
   const ref = useRef(null);
@@ -46,13 +60,13 @@ export default function Hero() {
     my.set((e.clientY - r.top) / r.height);
   };
 
-  /* Scroll depth */
+  /* Scroll depth, applied to the name only */
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const nameY = useTransform(scrollYProgress, [0, 1], ["0%", "-22%"]);
   const nameOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
 
   const word = (text, base) => (
-    <span className="block overflow-hidden pb-[0.03em]">
+    <span className="block overflow-hidden whitespace-nowrap pb-[0.03em]">
       {[...text].map((c, i) => (
         <motion.span
           key={i}
@@ -71,7 +85,7 @@ export default function Hero() {
     <section
       ref={ref}
       onPointerMove={handleMove}
-      className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 pb-16 pt-28 md:px-10"
+      className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 pb-14 pt-28 md:px-10 md:pb-16"
     >
       {/* Hints the browser to fetch the portrait (the LCP element) before it
           would otherwise discover it via the CSS/JS-driven <picture> below. */}
@@ -93,59 +107,112 @@ export default function Hero() {
         }}
       />
 
-      <motion.h1
-        style={{ y: reduce ? undefined : nameY, opacity: reduce ? undefined : nameOpacity }}
-        className="relative mx-auto w-full max-w-[1400px] text-center font-[Archivo,sans-serif] text-[clamp(2.6rem,13.2vw,13rem)] font-black uppercase leading-[0.82] tracking-[-0.035em] text-[#EDE8E0]"
+      <div
+        className={`relative mx-auto grid w-full max-w-[1400px] grid-cols-1 items-start gap-x-14 gap-y-9
+          [grid-template-areas:"eyebrow"_"name"_"portrait"_"headline"_"buttons"_"stats"]
+          md:grid-cols-[1.35fr_1fr] md:gap-y-10
+          md:[grid-template-areas:"eyebrow_portrait"_"name_portrait"_"headline_portrait"_"stats_stats"]`}
       >
-        {word(LINE_1, 0.2)}
-        {word(LINE_2, 0.42)}
-      </motion.h1>
+        {/* Eyebrow */}
+        <motion.p
+          initial={reduce ? false : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center gap-2 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[#9a9a9e] [grid-area:eyebrow] md:text-[0.78rem]"
+        >
+          <span aria-hidden className="h-[6px] w-[6px] shrink-0 rounded-full bg-[#F5C542]" />
+          Amazon PPC &amp; brand management
+        </motion.p>
 
-      {/* Portrait, overlapping the wordmark */}
-      <motion.div
-        initial={reduce ? false : { opacity: 0, y: 16, scale: 0.97 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative mx-auto -mt-[1.5%] h-[clamp(5.5rem,14vw,11rem)] w-[clamp(5.5rem,14vw,11rem)] overflow-hidden rounded-[22px] border border-white/10 bg-[#1a1a1d] sm:-mt-[3%] md:-mt-[6%]"
-      >
-        <picture>
-          <source srcSet={portraitWebp} type="image/webp" />
-          <img
-            src={portraitJpg}
-            alt="Portrait of Sheikh Anas"
-            fetchPriority="high"
-            className="h-full w-full object-cover"
-            width={800}
-            height={800}
-          />
-        </picture>
-      </motion.div>
+        {/* Name */}
+        <motion.h1
+          style={{ y: reduce ? undefined : nameY, opacity: reduce ? undefined : nameOpacity }}
+          className="font-[Archivo,sans-serif] text-[clamp(3.4rem,15vw,7rem)] font-black uppercase leading-[0.95] tracking-[-0.03em] text-[#EDE8E0] [grid-area:name] md:text-[clamp(3.6rem,9vw,10.5rem)]"
+        >
+          {word(LINE_1, 0.2)}
+          {word(LINE_2, 0.42)}
+        </motion.h1>
 
-      {/* Footer copy */}
-      <div className="mx-auto mt-12 flex w-full max-w-[1400px] flex-col gap-8 text-[0.96rem] font-medium leading-relaxed text-[#c7c7cc] md:mt-20 md:flex-row md:justify-between md:gap-16">
-        {[
-          {
-            align: "md:text-left",
-            body: "Most sellers hire someone to run ads. What they actually need is someone who treats ads, listings and launches as one system, because no campaign can fix a page that does not convert.",
-            highlight: "I run that whole system for 5 to 8 figure Amazon brands.",
-          },
-          {
-            align: "md:text-right",
-            body: "Six years in. 400+ products launched, brands running $2M to $10M a year, and a 40% conversion lift from listing and creative work. Currently more than 20 accounts across supplements, personal care, home, sporting goods and hardware.",
-            highlight: null,
-          },
-        ].map((c, i) => (
+        {/* Portrait */}
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 16, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="relative aspect-[16/10] w-full overflow-hidden rounded-[20px] border border-white/10 bg-[#1a1a1d] [grid-area:portrait] md:aspect-[4/5] md:self-stretch"
+        >
+          <picture>
+            <source srcSet={portraitWebp} type="image/webp" />
+            <img
+              src={portraitJpg}
+              alt="Portrait of Sheikh Anas, Amazon PPC and brand management specialist"
+              fetchPriority="high"
+              className="h-full w-full object-cover"
+              width={800}
+              height={800}
+            />
+          </picture>
+        </motion.div>
+
+        {/* Headline: question then answer, not a paragraph */}
+        <div className="[grid-area:headline]">
           <motion.p
-            key={i}
-            initial={reduce ? false : { opacity: 0, y: 16 }}
+            initial={reduce ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 1 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-            className={`max-w-[34ch] ${c.align}`}
+            transition={{ duration: 0.8, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-[36ch] text-[0.98rem] font-medium leading-snug text-[#9a9a9e] md:text-[1rem]"
           >
-            {c.body}
-            {c.highlight && <span className="font-semibold text-[#F5C542]"> {c.highlight}</span>}
+            Struggling to grow your brand on Amazon?
           </motion.p>
-        ))}
+          <motion.h2
+            initial={reduce ? false : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.97, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-2 max-w-[36ch] text-[clamp(1.4rem,4.4vw,1.7rem)] font-black normal-case leading-[1.2] text-[#EDE8E0]"
+          >
+            I help 5 to 8 figure brands turn ad spend into profitable growth.
+          </motion.h2>
+        </div>
+
+        {/* Mobile-only actions: nav carries these at desktop */}
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-2 gap-3 [grid-area:buttons] md:hidden"
+        >
+          {MOBILE_BUTTONS.map((b) => (
+            <a
+              key={b.label}
+              href={b.href}
+              target={b.external ? "_blank" : undefined}
+              rel={b.external ? "noreferrer" : undefined}
+              className={
+                b.filled
+                  ? "flex items-center justify-center rounded-full bg-[#F5C542] px-4 py-3.5 text-center font-mono text-[0.66rem] font-bold uppercase leading-tight tracking-[0.1em] text-[#0d0d0f] shadow-[0_6px_18px_-6px_rgba(245,197,66,0.5)] transition-transform duration-200 active:scale-[0.97]"
+                  : "flex items-center justify-center rounded-full border border-white/[0.18] px-4 py-3.5 text-center font-mono text-[0.66rem] font-semibold uppercase leading-tight tracking-[0.1em] text-[#c7c7cc] transition-all duration-200 active:border-[#F5C542]/50 active:text-[#F5C542]"
+              }
+            >
+              {b.label}
+            </a>
+          ))}
+        </motion.div>
+
+        {/* Stat strip */}
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.15, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-2 gap-x-6 gap-y-6 border-t border-white/[0.08] pt-7 [grid-area:stats] md:grid-cols-3 md:pt-8"
+        >
+          {STATS.map((s, i) => (
+            <div key={s.label} className={i === 2 ? "col-span-2 md:col-span-1" : ""}>
+              <div className="text-[clamp(1.35rem,3vw,1.6rem)] font-bold text-[#EDE8E0]">{s.n}</div>
+              <div className="mt-1 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-[#9a9a9e] md:text-[0.72rem]">
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

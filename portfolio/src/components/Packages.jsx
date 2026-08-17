@@ -298,7 +298,7 @@ export default function Packages() {
             type="button"
             onClick={() => setShowTable((v) => !v)}
             aria-expanded={showTable}
-            className="inline-flex items-center gap-2 font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-[#F5C542] transition-colors duration-200 hover:text-[#EDE8E0]"
+            className="inline-flex items-center gap-2 rounded-full border border-white/[0.16] px-6 py-3 font-mono text-[0.72rem] font-bold uppercase tracking-[0.12em] text-[#d8d8dc] transition-all duration-200 hover:border-[#F5C542]/50 hover:bg-[#F5C542]/[0.08] hover:text-[#F5C542]"
           >
             Compare all 24 services
             <span
@@ -326,15 +326,16 @@ export default function Packages() {
           )}
         </AnimatePresence>
 
-        <p className="mt-14 text-center text-[0.98rem] font-medium text-[#c7c7cc]">
-          Not sure which fits?{" "}
+        <div className="mt-14 flex flex-col items-center gap-4 text-center">
+          <p className="text-[0.98rem] font-medium text-[#c7c7cc]">Not sure which fits?</p>
           <a
             href="/audit"
-            className="font-semibold text-[#F5C542] underline decoration-[#F5C542]/40 underline-offset-4 transition-colors hover:text-[#EDE8E0]"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-[#F5C542]/50 bg-[#F5C542]/[0.06] px-6 py-3 font-mono text-[0.72rem] font-bold uppercase tracking-[0.14em] text-[#F5C542] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#F5C542] hover:bg-[#F5C542]/[0.14]"
           >
-            Request a free audit →
+            Request a free audit
+            <span aria-hidden>→</span>
           </a>
-        </p>
+        </div>
       </div>
     </section>
   );
