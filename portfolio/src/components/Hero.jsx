@@ -63,12 +63,23 @@ export default function Hero() {
   const nameY = useTransform(scrollYProgress, [0, 1], ["0%", "-22%"]);
   const nameOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
 
+  /* The gradient fill has to live on each letter's own span, not on the
+     h1 as a whole: background-clip: text combined with a parent that has
+     independently-transformed animated children clips unreliably in
+     Safari, cutting chunks out of the glyphs. Clipping each already-atomic
+     span to its own gradient avoids that entirely. */
   const word = (text, base) => (
     <span className="block overflow-hidden whitespace-nowrap pb-[0.03em]">
       {[...text].map((c, i) => (
         <motion.span
           key={i}
           className="inline-block"
+          style={{
+            backgroundImage: "linear-gradient(180deg, #F7F3EA 0%, #EDE8E0 55%, #d8c48f 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+          }}
           initial={reduce ? false : { y: "110%" }}
           animate={{ y: 0 }}
           transition={{ duration: 0.95, delay: base + i * 0.035, ease: [0.16, 1, 0.3, 1] }}
@@ -124,14 +135,7 @@ export default function Hero() {
 
         {/* Name */}
         <motion.h1
-          style={{
-            y: reduce ? undefined : nameY,
-            opacity: reduce ? undefined : nameOpacity,
-            backgroundImage: "linear-gradient(180deg, #F7F3EA 0%, #EDE8E0 55%, #d8c48f 100%)",
-            WebkitBackgroundClip: "text",
-            backgroundClip: "text",
-            color: "transparent",
-          }}
+          style={{ y: reduce ? undefined : nameY, opacity: reduce ? undefined : nameOpacity }}
           className="font-[Archivo,sans-serif] text-[clamp(3.2rem,14vw,6.5rem)] font-black uppercase leading-[0.95] tracking-[-0.03em] [grid-area:name] md:text-[clamp(3.2rem,7vw,7.5rem)]"
         >
           {word(LINE_1, 0.2)}

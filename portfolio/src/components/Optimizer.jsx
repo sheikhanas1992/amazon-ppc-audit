@@ -36,10 +36,48 @@ const STRIP = [
   },
 ];
 
-/* Three decisions rendered as a connected flow rather than isolated cards:
-   a gradient rail draws itself in on scroll, each node pulses in sequence,
-   and the rail's color literally is the handoff from one decision to the
-   next. */
+const STAIR_STEP = 56; // px of vertical descent per step, matched between the SVG rail and the node offsets
+const STAIR_ZONE = STAIR_STEP * (STRIP.length - 1) + 48; // last node's top + its own height
+
+function PulseNode({ s, i, className, style }) {
+  return (
+    <motion.div
+      initial={{ scale: 0.3, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={viewportOnce}
+      transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.2 + i * 0.18 }}
+      className={`relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 bg-[#0d0d0f] font-mono text-[0.8rem] font-bold ${className}`}
+      style={{ borderColor: s.color, color: s.color, boxShadow: "0 0 0 6px #0d0d0f", ...style }}
+    >
+      {s.n}
+      <motion.span
+        aria-hidden
+        animate={{ opacity: [0.55, 0, 0.55], scale: [1, 1.7, 1] }}
+        transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: 0.6 + i * 0.35 }}
+        className="absolute inset-0 rounded-full"
+        style={{ boxShadow: `0 0 0 1.5px ${s.color}66` }}
+      />
+    </motion.div>
+  );
+}
+
+function StepCard({ s }) {
+  return (
+    <div className="flex-1 rounded-[16px] border border-white/[0.08] bg-[#151517] p-6 transition-colors duration-300">
+      <div className="font-mono text-[0.64rem] font-bold uppercase tracking-[0.14em]" style={{ color: s.color }}>
+        {s.label}
+      </div>
+      <div className="mt-2 font-mono text-[0.9rem] font-semibold text-[#EDE8E0]">{s.change}</div>
+      <p className="mt-3 text-[0.86rem] leading-relaxed text-[#c7c7cc]">{s.note}</p>
+    </div>
+  );
+}
+
+/* Three decisions rendered as a connected flow rather than isolated cards.
+   Mobile keeps a vertical timeline (a single column has nowhere to "step"
+   to). Desktop renders the milestones as an actual descending staircase --
+   each node lower than the last, joined by a diagonal gradient rail that
+   draws itself in on scroll -- with the cards racked up underneath. */
 function CampaignStrip() {
   return (
     <motion.div
@@ -49,52 +87,74 @@ function CampaignStrip() {
       viewport={viewportOnce}
       className="relative mt-10"
     >
-      <motion.div
-        aria-hidden
-        variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] } } }}
-        className="pointer-events-none absolute left-[8%] right-[8%] top-6 hidden h-px origin-left md:block"
-        style={{ background: "linear-gradient(90deg, #9BE6B4, #F5C542, #8FB8E8)" }}
-      />
-      <motion.div
-        aria-hidden
-        variants={{ hidden: { scaleY: 0 }, show: { scaleY: 1, transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] } } }}
-        className="pointer-events-none absolute left-6 top-4 bottom-4 w-px origin-top md:hidden"
-        style={{ background: "linear-gradient(180deg, #9BE6B4, #F5C542, #8FB8E8)" }}
-      />
-
-      <div className="relative grid gap-8 md:grid-cols-3 md:gap-6">
-        {STRIP.map((s, i) => (
-          <motion.div key={s.label} variants={staggerItem} className="relative flex gap-5 md:flex-col md:gap-0">
-            <motion.div
-              initial={{ scale: 0.3, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={viewportOnce}
-              transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.2 + i * 0.18 }}
-              className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 bg-[#0d0d0f] font-mono text-[0.8rem] font-bold"
-              style={{ borderColor: s.color, color: s.color, boxShadow: "0 0 0 6px #0d0d0f" }}
-            >
-              {s.n}
-              <motion.span
-                aria-hidden
-                animate={{ opacity: [0.55, 0, 0.55], scale: [1, 1.7, 1] }}
-                transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: 0.6 + i * 0.35 }}
-                className="absolute inset-0 rounded-full"
-                style={{ boxShadow: `0 0 0 1.5px ${s.color}66` }}
-              />
+      {/* Mobile: vertical timeline */}
+      <div className="relative md:hidden">
+        <motion.div
+          aria-hidden
+          variants={{ hidden: { scaleY: 0 }, show: { scaleY: 1, transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] } } }}
+          className="pointer-events-none absolute left-6 top-4 bottom-4 w-px origin-top"
+          style={{ background: "linear-gradient(180deg, #9BE6B4, #F5C542, #8FB8E8)" }}
+        />
+        <div className="flex flex-col gap-8">
+          {STRIP.map((s, i) => (
+            <motion.div key={s.label} variants={staggerItem} className="relative flex gap-5">
+              <PulseNode s={s} i={i} />
+              <StepCard s={s} />
             </motion.div>
+          ))}
+        </div>
+      </div>
 
-            <div className="flex-1 rounded-[16px] border border-white/[0.08] bg-[#151517] p-6 transition-colors duration-300 md:mt-5">
-              <div
-                className="font-mono text-[0.64rem] font-bold uppercase tracking-[0.14em]"
-                style={{ color: s.color }}
-              >
-                {s.label}
-              </div>
-              <div className="mt-2 font-mono text-[0.9rem] font-semibold text-[#EDE8E0]">{s.change}</div>
-              <p className="mt-3 text-[0.86rem] leading-relaxed text-[#c7c7cc]">{s.note}</p>
-            </div>
-          </motion.div>
-        ))}
+      {/* Desktop: descending staircase */}
+      <div className="hidden md:block">
+        <div className="relative" style={{ height: STAIR_ZONE }}>
+          <svg
+            aria-hidden
+            viewBox={`0 0 100 ${STAIR_ZONE}`}
+            preserveAspectRatio="none"
+            className="pointer-events-none absolute inset-0 h-full w-full"
+          >
+            <defs>
+              <linearGradient id="stairRail" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#9BE6B4" />
+                <stop offset="50%" stopColor="#F5C542" />
+                <stop offset="100%" stopColor="#8FB8E8" />
+              </linearGradient>
+            </defs>
+            <motion.path
+              d={`M 16.7 24 L 50 ${STAIR_STEP + 24} L 83.3 ${STAIR_STEP * 2 + 24}`}
+              fill="none"
+              stroke="url(#stairRail)"
+              strokeWidth="1.5"
+              vectorEffect="non-scaling-stroke"
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={viewportOnce}
+              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            />
+          </svg>
+          {STRIP.map((s, i) => (
+            <PulseNode
+              key={s.label}
+              s={s}
+              i={i}
+              className="-translate-x-1/2"
+              style={{
+                position: "absolute",
+                left: `${(i + 0.5) * (100 / STRIP.length)}%`,
+                top: i * STAIR_STEP,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="grid grid-cols-3 gap-6">
+          {STRIP.map((s) => (
+            <motion.div key={s.label} variants={staggerItem}>
+              <StepCard s={s} />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </motion.div>
   );
