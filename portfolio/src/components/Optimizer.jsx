@@ -69,7 +69,7 @@ export default function Optimizer() {
         <div className="max-w-[56ch]">
           <motion.span
             variants={fadeUp({ distance: 12 })}
-            className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[#9a9a9e]"
+            className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#c7c7cc]"
           >
             Anyone can show you a dashboard
           </motion.span>

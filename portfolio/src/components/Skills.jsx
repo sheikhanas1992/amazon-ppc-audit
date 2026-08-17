@@ -93,7 +93,7 @@ export default function Skills() {
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="mt-10 border-t border-white/[0.08] pt-6 text-[0.82rem] italic leading-relaxed text-[#9a9a9e]"
+          className="mt-10 border-t border-white/[0.08] pt-6 text-[0.85rem] font-medium italic leading-relaxed text-[#c7c7cc]"
         >
           Tooling: Scale Insights, Helium 10, Data Dive, Jungle Scout, Brand Analytics, plus trackers and reporting
           workbooks I build per account.

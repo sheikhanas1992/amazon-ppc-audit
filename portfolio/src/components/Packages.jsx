@@ -9,7 +9,6 @@ const TIERS = [
   {
     key: "launch",
     name: "Launch",
-    description: "For a first product, done properly.",
     count: "10 services included",
     items: [
       "3 shortlisted products",
@@ -18,7 +17,7 @@ const TIERS = [
       "Listing images and copywriting",
       "1 month PPC ads",
     ],
-    more: "and 3 more",
+    more: "and 5 more",
     button: "Get started",
     href: CALENDLY,
     order: "order-2 md:order-1",
@@ -26,7 +25,6 @@ const TIERS = [
   {
     key: "scale",
     name: "Scale",
-    description: "For sellers adding a second or third SKU.",
     count: "16 services included",
     items: [
       "Everything in Launch",
@@ -35,7 +33,7 @@ const TIERS = [
       "Trademark and Brand Registry",
       "Software integrations and inventory planning",
     ],
-    more: null,
+    more: "and 11 more",
     button: "Get started",
     href: CALENDLY,
     order: "order-3 md:order-2",
@@ -43,7 +41,6 @@ const TIERS = [
   {
     key: "dominate",
     name: "Dominate",
-    description: "Everything, end to end, nothing outsourced.",
     count: "23 services included",
     items: [
       "Everything in Scale",
@@ -52,7 +49,7 @@ const TIERS = [
       "Advertising video and A+ Content",
       "3 months PPC ads",
     ],
-    more: "and 2 more",
+    more: "and 18 more",
     button: "Get started",
     href: CALENDLY,
     order: "order-4 md:order-3",
@@ -150,8 +147,7 @@ function MobileLadder() {
                     className="overflow-hidden"
                   >
                     <div className="mt-2 rounded-[16px] border border-white/[0.08] bg-[#131315] p-5">
-                      <p className="text-[0.9rem] font-medium leading-snug text-[#c7c7cc]">{tier.description}</p>
-                      <ul className="mt-4 flex flex-col gap-2.5">
+                      <ul className="flex flex-col gap-2.5">
                         {tier.items.map((item) => (
                           <li
                             key={item}
@@ -163,7 +159,7 @@ function MobileLadder() {
                         ))}
                       </ul>
                       {tier.more && (
-                        <p className="mt-3 text-[0.78rem] font-medium italic text-[#9a9a9e]">{tier.more}</p>
+                        <p className="mt-3 text-[0.8rem] font-semibold italic text-[#c7c7cc]">{tier.more}</p>
                       )}
                       <a
                         href={tier.href}
@@ -203,8 +199,10 @@ function Card({ tier, feature = false }) {
       )}
 
       <h3 className="text-[1.3rem] font-black normal-case leading-tight text-[#EDE8E0]">{tier.name}</h3>
-      <p className="mt-2 text-[0.92rem] font-medium leading-snug text-[#c7c7cc]">{tier.description}</p>
-      <p className="mt-4 font-mono text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-[#F5C542]">
+      {tier.description && (
+        <p className="mt-2 text-[0.92rem] font-medium leading-snug text-[#c7c7cc]">{tier.description}</p>
+      )}
+      <p className={`font-mono text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-[#F5C542] ${tier.description ? "mt-4" : "mt-3"}`}>
         {tier.count}
       </p>
 
@@ -220,7 +218,7 @@ function Card({ tier, feature = false }) {
         ))}
       </ul>
 
-      {tier.more && <p className="mt-3 text-[0.8rem] font-medium italic text-[#9a9a9e]">{tier.more}</p>}
+      {tier.more && <p className="mt-3 text-[0.82rem] font-semibold italic text-[#c7c7cc]">{tier.more}</p>}
 
       <div className="mt-auto pt-7">
         <a

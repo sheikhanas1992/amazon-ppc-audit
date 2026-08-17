@@ -12,11 +12,15 @@ export default function LowerSections() {
   return (
     <>
       <About />
-      <Experience />
+      <div className="border-t border-white/[0.06] bg-[#111113]">
+        <Experience />
+      </div>
       <div className="border-t border-white/[0.06]">
         <Packages />
       </div>
-      <HowIWork />
+      <div className="border-t border-white/[0.06] bg-[#111113]">
+        <HowIWork />
+      </div>
       <div className="border-t border-white/[0.06]">
         <Skills />
       </div>
