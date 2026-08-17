@@ -34,7 +34,7 @@ export default function About() {
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(44rem 30rem at 90% 10%, rgba(245,197,66,0.07), transparent 65%), linear-gradient(180deg, #131210 0%, #0d0d0f 100%)",
+            "radial-gradient(44rem 30rem at 90% 10%, rgba(237,232,224,0.1), transparent 65%), linear-gradient(180deg, #17171a 0%, #0d0d0f 100%)",
         }}
       />
       <div className="mx-auto grid max-w-[1400px] gap-16 md:grid-cols-2 md:gap-12">
