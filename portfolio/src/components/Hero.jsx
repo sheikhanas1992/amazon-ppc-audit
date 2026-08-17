@@ -31,7 +31,7 @@ const STATS = [
 ];
 
 const MOBILE_BUTTONS = [
-  { label: "Book a strategy call", href: CALENDLY, external: true, filled: false },
+  { label: "Book a strategy call", href: CALENDLY, external: true, filled: true },
   { label: "Request services", href: "#packages", filled: false },
 ];
 
@@ -94,7 +94,7 @@ export default function Hero() {
     <section
       ref={ref}
       onPointerMove={handleMove}
-      className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 pb-10 pt-24 md:px-10 md:pb-10 md:pt-24"
+      className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 pb-6 pt-16 md:px-10 md:pb-10 md:pt-24"
     >
       {/* Hints the browser to fetch the portrait (the LCP element) before it
           would otherwise discover it via the CSS/JS-driven <picture> below. */}
@@ -117,7 +117,7 @@ export default function Hero() {
       />
 
       <div
-        className={`relative mx-auto grid w-full max-w-[1400px] grid-cols-1 items-start gap-x-14 gap-y-7
+        className={`relative mx-auto grid w-full max-w-[1400px] grid-cols-1 items-start gap-x-14 gap-y-4
           [grid-template-areas:"eyebrow"_"name"_"portrait"_"headline"_"buttons"_"stats"]
           md:grid-cols-[1.35fr_1fr] md:gap-y-6
           md:[grid-template-areas:"eyebrow_portrait"_"name_portrait"_"headline_portrait"_"stats_stats"]`}
@@ -130,13 +130,13 @@ export default function Hero() {
           className="flex items-center gap-2 font-mono text-[0.76rem] font-bold uppercase tracking-[0.16em] text-[#9BE6B4] [grid-area:eyebrow] md:text-[0.85rem]"
         >
           <span aria-hidden className="h-[7px] w-[7px] shrink-0 rounded-full bg-[#F5C542]" />
-          Amazon PPC &amp; brand management
+          Amazon PPC &amp; brand manager
         </motion.p>
 
         {/* Name */}
         <motion.h1
           style={{ y: reduce ? undefined : nameY, opacity: reduce ? undefined : nameOpacity }}
-          className="font-[Archivo,sans-serif] text-[clamp(3.2rem,14vw,6.5rem)] font-black uppercase leading-[0.95] tracking-[-0.03em] [grid-area:name] md:text-[clamp(3.2rem,7vw,7.5rem)]"
+          className="font-[Archivo,sans-serif] text-[clamp(2.6rem,11vw,6.5rem)] font-black uppercase leading-[0.95] tracking-[-0.03em] [grid-area:name] md:text-[clamp(3.2rem,7vw,7.5rem)]"
         >
           {word(LINE_1, 0.2)}
           {word(LINE_2, 0.42)}
@@ -147,7 +147,7 @@ export default function Hero() {
           initial={reduce ? false : { opacity: 0, y: 16, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="relative aspect-[5/4] w-full overflow-hidden rounded-[20px] border border-white/10 bg-[#1a1a1d] [grid-area:portrait] md:aspect-auto md:h-full md:max-h-[46vh] md:self-start"
+          className="relative aspect-[5/4] max-h-[22vh] w-full overflow-hidden rounded-[20px] border border-white/10 bg-[#1a1a1d] [grid-area:portrait] md:aspect-auto md:h-full md:max-h-[46vh] md:self-start"
         >
           <picture>
             <source srcSet={portraitWebp} type="image/webp" />
@@ -199,7 +199,7 @@ export default function Hero() {
               className={
                 b.filled
                   ? "flex items-center justify-center rounded-full bg-[#F5C542] px-4 py-3.5 text-center font-mono text-[0.66rem] font-bold uppercase leading-tight tracking-[0.1em] text-[#0d0d0f] shadow-[0_6px_18px_-6px_rgba(245,197,66,0.5)] transition-transform duration-200 active:scale-[0.97]"
-                  : "flex items-center justify-center rounded-full border border-white/[0.18] px-4 py-3.5 text-center font-mono text-[0.66rem] font-semibold uppercase leading-tight tracking-[0.1em] text-[#c7c7cc] transition-all duration-200 active:border-[#F5C542]/50 active:text-[#F5C542]"
+                  : "flex items-center justify-center rounded-full border-2 border-white/[0.32] px-4 py-3.5 text-center font-mono text-[0.66rem] font-bold uppercase leading-tight tracking-[0.1em] text-[#EDE8E0] transition-all duration-200 active:border-[#F5C542]/60 active:text-[#F5C542]"
               }
             >
               {b.label}
