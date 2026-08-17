@@ -286,7 +286,16 @@ export default function CampaignOptimizer() {
   const dAcos = optimized ? ((a.acos - b.acos) / b.acos) * 100 : 0;
 
   return (
-    <div ref={ref} className="overflow-hidden rounded-[20px] border border-white/[0.08] bg-[#151517]">
+    <div className="relative">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -inset-6 -z-10 rounded-[32px] opacity-70 blur-2xl"
+        style={{ background: "radial-gradient(60% 60% at 50% 0%, rgba(245,197,66,0.14), transparent 70%)" }}
+      />
+      <div
+        ref={ref}
+        className="relative overflow-hidden rounded-[20px] border border-white/[0.12] bg-[#17171a] shadow-[0_40px_100px_-30px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.03)]"
+      >
       {/* Instrument header */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.06] px-4 py-3">
         <div className="flex items-center gap-2.5">
@@ -340,17 +349,17 @@ export default function CampaignOptimizer() {
       {/* The report. Scrolls horizontally on narrow screens, the way a real
           campaign manager does, rather than crushing the columns. */}
       <div className="relative">
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-[#151517] to-transparent sm:hidden" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-[#17171a] to-transparent sm:hidden" />
         <div className="overflow-x-auto">
           <table className="w-full min-w-[660px] border-collapse">
             <thead>
-              <tr className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-[#c7c7cc]">
-                <th className="py-2.5 pl-4 pr-3 text-left font-normal">Customer search term</th>
-                <th className="hidden px-3 text-right font-normal sm:table-cell">Clicks</th>
-                <th className="px-3 text-right font-normal">Bid</th>
-                <th className="px-3 text-right font-normal">Spend</th>
-                <th className="px-3 text-right font-normal">ACOS</th>
-                <th className="py-2.5 pl-3 pr-4 text-right font-normal">Action</th>
+              <tr className="border-b border-[#F5C542]/25 bg-white/[0.03] text-[0.72rem] font-extrabold uppercase tracking-[0.12em] text-[#EDE8E0]">
+                <th className="py-3 pl-4 pr-3 text-left">Customer search term</th>
+                <th className="hidden px-3 text-right sm:table-cell">Clicks</th>
+                <th className="px-3 text-right">Bid</th>
+                <th className="px-3 text-right">Spend</th>
+                <th className="px-3 text-right">ACOS</th>
+                <th className="py-3 pl-3 pr-4 text-right">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -372,6 +381,7 @@ export default function CampaignOptimizer() {
       <p className="border-t border-white/[0.08] px-4 py-3 text-[0.72rem] font-semibold leading-relaxed text-[#c7c7cc]">
         A worked demonstration of method, not a client account.
       </p>
+      </div>
     </div>
   );
 }

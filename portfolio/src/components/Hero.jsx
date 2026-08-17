@@ -25,9 +25,9 @@ const LINE_2 = "ANAS";
 const CALENDLY = "https://calendly.com/sheikhanas1992/30min";
 
 const STATS = [
-  { n: "400+", label: "products launched" },
-  { n: "$2M–$10M", label: "brand revenue managed" },
-  { n: "6 yrs", label: "on Amazon advertising" },
+  { n: "400+", label: "products launched", color: "#9BE6B4" },
+  { n: "$2M–$10M", label: "brand revenue managed", color: "#F5C542" },
+  { n: "6 yrs", label: "on Amazon advertising", color: "#8FB8E8" },
 ];
 
 const MOBILE_BUTTONS = [
@@ -116,7 +116,7 @@ export default function Hero() {
           initial={reduce ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-2 font-mono text-[0.76rem] font-bold uppercase tracking-[0.16em] text-[#d8d8dc] [grid-area:eyebrow] md:text-[0.85rem]"
+          className="flex items-center gap-2 font-mono text-[0.76rem] font-bold uppercase tracking-[0.16em] text-[#9BE6B4] [grid-area:eyebrow] md:text-[0.85rem]"
         >
           <span aria-hidden className="h-[7px] w-[7px] shrink-0 rounded-full bg-[#F5C542]" />
           Amazon PPC &amp; brand management
@@ -124,8 +124,15 @@ export default function Hero() {
 
         {/* Name */}
         <motion.h1
-          style={{ y: reduce ? undefined : nameY, opacity: reduce ? undefined : nameOpacity }}
-          className="font-[Archivo,sans-serif] text-[clamp(3.2rem,14vw,6.5rem)] font-black uppercase leading-[0.95] tracking-[-0.03em] text-[#EDE8E0] [grid-area:name] md:text-[clamp(3.2rem,7vw,7.5rem)]"
+          style={{
+            y: reduce ? undefined : nameY,
+            opacity: reduce ? undefined : nameOpacity,
+            backgroundImage: "linear-gradient(180deg, #F7F3EA 0%, #EDE8E0 55%, #d8c48f 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+          }}
+          className="font-[Archivo,sans-serif] text-[clamp(3.2rem,14vw,6.5rem)] font-black uppercase leading-[0.95] tracking-[-0.03em] [grid-area:name] md:text-[clamp(3.2rem,7vw,7.5rem)]"
         >
           {word(LINE_1, 0.2)}
           {word(LINE_2, 0.42)}
@@ -157,7 +164,7 @@ export default function Hero() {
             initial={reduce ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-[36ch] text-[1.05rem] font-semibold leading-snug text-[#c7c7cc] md:text-[1.08rem]"
+            className="max-w-[36ch] text-[1.05rem] font-semibold italic leading-snug text-[#8FB8E8] md:text-[1.08rem]"
           >
             Struggling to grow your brand on Amazon?
           </motion.p>
@@ -167,7 +174,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.97, ease: [0.16, 1, 0.3, 1] }}
             className="mt-2 max-w-[36ch] text-[clamp(1.4rem,4.4vw,1.7rem)] font-black normal-case leading-[1.2] text-[#EDE8E0]"
           >
-            I help 5 to 8 figure brands turn ad spend into profitable growth.
+            I help 5 to 8 figure brands turn ad spend into{" "}
+            <span className="text-[#F5C542]">profitable growth</span>.
           </motion.h2>
         </div>
 
@@ -204,7 +212,9 @@ export default function Hero() {
         >
           {STATS.map((s, i) => (
             <div key={s.label} className={i === 2 ? "col-span-2 md:col-span-1" : ""}>
-              <div className="text-[clamp(1.3rem,2.6vw,1.5rem)] font-bold text-[#EDE8E0]">{s.n}</div>
+              <div className="text-[clamp(1.3rem,2.6vw,1.5rem)] font-bold" style={{ color: s.color }}>
+                {s.n}
+              </div>
               <div className="mt-1 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-[#c7c7cc] md:text-[0.72rem]">
                 {s.label}
               </div>

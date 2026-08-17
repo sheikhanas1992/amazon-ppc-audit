@@ -14,44 +14,88 @@ import { fadeUp, staggerContainer, staggerItem, viewportOnce } from "../lib/moti
 
 const STRIP = [
   {
+    n: "01",
     label: "Top of Search placement",
     change: "0% → +45%",
     note: "Top of Search converted at roughly twice the rate of Rest of Search. The modifier buys that position instead of paying for it with a blanket bid raise across every placement.",
+    color: "#9BE6B4",
   },
   {
+    n: "02",
     label: "Bidding strategy",
     change: "Dynamic up and down → Dynamic down only",
     note: "Two terms were being bid up automatically into losses. Down-only stops Amazon spending past the point where the data already said stop.",
+    color: "#F5C542",
   },
   {
+    n: "03",
     label: "Structure",
     change: "One broad campaign → broad harvester plus two SKCs",
     note: "The two proven converters get their own campaigns with their own budgets, so a spike on a research term can no longer starve them.",
+    color: "#8FB8E8",
   },
 ];
 
+/* Three decisions rendered as a connected flow rather than isolated cards:
+   a gradient rail draws itself in on scroll, each node pulses in sequence,
+   and the rail's color literally is the handoff from one decision to the
+   next. */
 function CampaignStrip() {
   return (
     <motion.div
-      variants={staggerContainer({ stagger: 0.1 })}
+      variants={staggerContainer({ stagger: 0.16 })}
       initial="hidden"
       whileInView="show"
       viewport={viewportOnce}
-      className="mt-6 grid gap-5 md:grid-cols-3"
+      className="relative mt-10"
     >
-      {STRIP.map((s) => (
-        <motion.div
-          key={s.label}
-          variants={staggerItem}
-          className="rounded-[16px] border border-white/[0.08] bg-[#151517] p-6"
-        >
-          <div className="font-mono text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#F5C542]">
-            {s.label}
-          </div>
-          <div className="mt-2 font-mono text-[0.9rem] font-semibold text-[#EDE8E0]">{s.change}</div>
-          <p className="mt-3 text-[0.86rem] leading-relaxed text-[#c7c7cc]">{s.note}</p>
-        </motion.div>
-      ))}
+      <motion.div
+        aria-hidden
+        variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] } } }}
+        className="pointer-events-none absolute left-[8%] right-[8%] top-6 hidden h-px origin-left md:block"
+        style={{ background: "linear-gradient(90deg, #9BE6B4, #F5C542, #8FB8E8)" }}
+      />
+      <motion.div
+        aria-hidden
+        variants={{ hidden: { scaleY: 0 }, show: { scaleY: 1, transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] } } }}
+        className="pointer-events-none absolute left-6 top-4 bottom-4 w-px origin-top md:hidden"
+        style={{ background: "linear-gradient(180deg, #9BE6B4, #F5C542, #8FB8E8)" }}
+      />
+
+      <div className="relative grid gap-8 md:grid-cols-3 md:gap-6">
+        {STRIP.map((s, i) => (
+          <motion.div key={s.label} variants={staggerItem} className="relative flex gap-5 md:flex-col md:gap-0">
+            <motion.div
+              initial={{ scale: 0.3, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={viewportOnce}
+              transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.2 + i * 0.18 }}
+              className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 bg-[#0d0d0f] font-mono text-[0.8rem] font-bold"
+              style={{ borderColor: s.color, color: s.color, boxShadow: "0 0 0 6px #0d0d0f" }}
+            >
+              {s.n}
+              <motion.span
+                aria-hidden
+                animate={{ opacity: [0.55, 0, 0.55], scale: [1, 1.7, 1] }}
+                transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: 0.6 + i * 0.35 }}
+                className="absolute inset-0 rounded-full"
+                style={{ boxShadow: `0 0 0 1.5px ${s.color}66` }}
+              />
+            </motion.div>
+
+            <div className="flex-1 rounded-[16px] border border-white/[0.08] bg-[#151517] p-6 transition-colors duration-300 md:mt-5">
+              <div
+                className="font-mono text-[0.64rem] font-bold uppercase tracking-[0.14em]"
+                style={{ color: s.color }}
+              >
+                {s.label}
+              </div>
+              <div className="mt-2 font-mono text-[0.9rem] font-semibold text-[#EDE8E0]">{s.change}</div>
+              <p className="mt-3 text-[0.86rem] leading-relaxed text-[#c7c7cc]">{s.note}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </motion.div>
   );
 }
