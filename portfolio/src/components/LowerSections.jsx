@@ -3,6 +3,7 @@ import Experience from "./Experience";
 import Contact from "./Contact";
 import HowIWork from "./HowIWork";
 import Packages from "./Packages";
+import Skills from "./Skills";
 
 /** Everything below the flagship Optimizer section, grouped into one lazy
  * chunk so the critical above-the-fold bundle (Hero + Optimizer) stays
@@ -12,9 +13,12 @@ export default function LowerSections() {
     <>
       <About />
       <Experience />
-      <HowIWork />
       <div className="border-t border-white/[0.06]">
         <Packages />
+      </div>
+      <HowIWork />
+      <div className="border-t border-white/[0.06]">
+        <Skills />
       </div>
       <div
         className="relative overflow-hidden border-t border-white/[0.06]"

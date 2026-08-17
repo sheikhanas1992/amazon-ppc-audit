@@ -169,7 +169,7 @@ function MobileLadder() {
                         href={tier.href}
                         target={tier.href.startsWith("http") ? "_blank" : undefined}
                         rel={tier.href.startsWith("http") ? "noreferrer" : undefined}
-                        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/[0.16] px-5 py-3 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#d8d8dc] transition-all duration-200 active:border-[#F5C542]/50 active:bg-[#F5C542]/[0.08] active:text-[#F5C542]"
+                        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-[#F5C542]/50 bg-[#F5C542]/[0.06] px-5 py-3 font-mono text-[0.72rem] font-bold uppercase tracking-[0.14em] text-[#F5C542] transition-all duration-200 active:border-[#F5C542] active:bg-[#F5C542]/[0.14]"
                       >
                         {tier.button}
                         <span aria-hidden>→</span>
@@ -230,7 +230,7 @@ function Card({ tier, feature = false }) {
           className={
             feature
               ? "inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#F5C542] px-7 py-3.5 font-mono text-[0.76rem] font-bold uppercase tracking-[0.14em] text-[#0d0d0f] shadow-[0_8px_24px_-8px_rgba(245,197,66,0.5)] transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98]"
-              : "inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/[0.16] px-5 py-2.5 font-mono text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#d8d8dc] transition-all duration-200 hover:border-[#F5C542]/50 hover:bg-[#F5C542]/[0.08] hover:text-[#F5C542]"
+              : "inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-[#F5C542]/50 bg-[#F5C542]/[0.06] px-5 py-3 font-mono text-[0.72rem] font-bold uppercase tracking-[0.14em] text-[#F5C542] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#F5C542] hover:bg-[#F5C542]/[0.14]"
           }
         >
           {tier.button}
